@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+    if (localStorage.getItem('ts-auth') !== '1' && sessionStorage.getItem('ts-auth') !== '1') {
+        window.location.href = '../login/login.html';
+    }
+</script>
+<title>Configuración · Talentsoft</title>
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="configuracion.css">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body data-page="configuracion" data-login="../login/login.html">
+
+<nav class="sidebar">
+    <div class="logo-menu">
+        <h2 class="logo">Talentsoft</h2>
+        <i class='bx bx-menu toggle-btn'></i>
+    </div>
+    <ul class="list">
+        <li class="list-item" data-page="dashboard">
+            <a href="../index.html">
+                <i class='bx bx-grid-alt'></i>
+                <span class="link-name" style="--i:1;">Dashboard</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="usuario">
+            <a href="../usuario/usuario.html">
+                <i class='bx bx-user'></i>
+                <span class="link-name" style="--i:2;">Usuario</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="asistencia">
+            <a href="../asistencia/asistencia.html">
+                <i class='bx bx-time'></i>
+                <span class="link-name" style="--i:3;">Asistencia</span>
+            </a>
+        </li>
+        <li class="list-item">
+            <a href="#" title="Próximamente">
+                <i class='bx bx-pie-chart-alt-2'></i>
+                <span class="link-name" style="--i:4;">Reportes</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="vacantes,pipeline,banco,evaluacion,historial">
+            <a href="../Gestion_Vacantes.html">
+                <i class='bx bxs-user-account'></i>
+                <span class="link-name" style="--i:5;">Reclutamiento</span>
+            </a>
+        </li>
+        <li class="list-item">
+            <a href="#" title="Próximamente">
+                <i class='bx bx-timer'></i>
+                <span class="link-name" style="--i:6;">Control asistencia</span>
+            </a>
+        </li>
+        <li class="list-item">
+            <a href="#" title="Próximamente">
+                <i class='bx bx-dollar'></i>
+                <span class="link-name" style="--i:7;">Nomina</span>
+            </a>
+        </li>
+        <li class="list-item">
+            <a href="#" title="Próximamente">
+                <i class='bx bx-hourglass'></i>
+                <span class="link-name" style="--i:7;">Horas trabajadas</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="calendario">
+            <a href="../calendario/calendario.html">
+                <i class='bx bx-calendar-event'></i>
+                <span class="link-name" style="--i:8;">Eventos</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="configuracion">
+            <a href="../configuracion/configuracion.html">
+                <i class='bx bx-cog'></i>
+                <span class="link-name" style="--i:9;">Configuración</span>
+            </a>
+        </li>
+    </ul>
+
+    <li class="mode">
+        <div class="moon-sun">
+            <i class='bx bx-moon'></i>
+            <i class='bx bx-sun'></i>
+        </div>
+        <span class="mode-text">Modo claro</span>
+        <div class="mode-switch">
+            <span class="switch"></span>
+        </div>
+    </li>
+
+    <div class="bottom-content">
+        <li>
+            <a href="#">
+                <i class='bx bx-log-out'></i>
+                <span class="link-name" style="--i:10;">Cerrar sesión</span>
+            </a>
+        </li>
+    </div>
+</nav>
+
+<main class="main-content">
+
+        <div class="cfg-page">
+
+
+            <!-- =================================================
+                 HEADER
+            ================================================== -->
+
+            <div class="page-header">
+
+                <h1>
+                    Configuración
+                </h1>
+
+                <p>
+                    Roles y permisos: asigna un rol a cada
+                    colaborador para definir qué puede ver y
+                    hacer dentro del sistema.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 ROLES Y PERMISOS POR EMPLEADO
+
+                 Los roles y sus permisos vienen del diagrama de
+                 casos de uso del proyecto: Administrador, Jefe,
+                 Empleado y Entrevistador. Si el texto de algún
+                 permiso necesita cambiar, se edita en
+                 PERMISOS_POR_ROL dentro de configuracion.js;
+                 no hay que tocar este HTML.
+            ================================================== -->
+
+            <div class="cfg-employees-list"
+                 id="cfg-employees-list">
+
+
+                <article class="cfg-employee-card"
+                         data-employee="1">
+
+                    <div class="cfg-employee-avatar">
+                        CT
+                    </div>
+
+                    <div class="cfg-employee-info">
+
+                        <h4>
+                            Camila Torres
+                        </h4>
+
+                        <p>
+                            Operaria de confección
+                        </p>
+
+
+                        <label class="cfg-role-label"
+                               for="cfg-role-1">
+                            Rol asignado
+                        </label>
+
+                        <select class="cfg-role-select"
+                                id="cfg-role-1"
+                                data-employee="1">
+
+                            <option value="">
+                                Sin asignar
+                            </option>
+
+                            <option value="empleado" selected>
+                                Empleado
+                            </option>
+
+                            <option value="administrador">
+                                Administrador
+                            </option>
+
+                            <option value="jefe">
+                                Jefe
+                            </option>
+
+                            <option value="entrevistador">
+                                Entrevistador
+                            </option>
+
+                        </select>
+
+
+                        <div class="cfg-permissions-box"
+                             id="cfg-permissions-1">
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <article class="cfg-employee-card"
+                         data-employee="2">
+
+                    <div class="cfg-employee-avatar">
+                        AR
+                    </div>
+
+                    <div class="cfg-employee-info">
+
+                        <h4>
+                            Andrés Ramírez
+                        </h4>
+
+                        <p>
+                            Jefe de área
+                        </p>
+
+
+                        <label class="cfg-role-label"
+                               for="cfg-role-2">
+                            Rol asignado
+                        </label>
+
+                        <select class="cfg-role-select"
+                                id="cfg-role-2"
+                                data-employee="2">
+
+                            <option value="">
+                                Sin asignar
+                            </option>
+
+                            <option value="empleado">
+                                Empleado
+                            </option>
+
+                            <option value="administrador">
+                                Administrador
+                            </option>
+
+                            <option value="jefe" selected>
+                                Jefe
+                            </option>
+
+                            <option value="entrevistador">
+                                Entrevistador
+                            </option>
+
+                        </select>
+
+
+                        <div class="cfg-permissions-box"
+                             id="cfg-permissions-2">
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <article class="cfg-employee-card"
+                         data-employee="3">
+
+                    <div class="cfg-employee-avatar">
+                        SP
+                    </div>
+
+                    <div class="cfg-employee-info">
+
+                        <h4>
+                            Sofía Pardo
+                        </h4>
+
+                        <p>
+                            Encargada de selección de personal
+                        </p>
+
+
+                        <label class="cfg-role-label"
+                               for="cfg-role-3">
+                            Rol asignado
+                        </label>
+
+                        <select class="cfg-role-select"
+                                id="cfg-role-3"
+                                data-employee="3">
+
+                            <option value="">
+                                Sin asignar
+                            </option>
+
+                            <option value="empleado">
+                                Empleado
+                            </option>
+
+                            <option value="administrador">
+                                Administrador
+                            </option>
+
+                            <option value="jefe">
+                                Jefe
+                            </option>
+
+                            <option value="entrevistador" selected>
+                                Entrevistador
+                            </option>
+
+                        </select>
+
+
+                        <div class="cfg-permissions-box"
+                             id="cfg-permissions-3">
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </div>
+
+    </main>
+
+<script src="../js/script.js"></script>
+<script src="configuracion.js"></script>
+</body>
+</html>

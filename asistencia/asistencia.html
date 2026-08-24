@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+    if (localStorage.getItem('ts-auth') !== '1' && sessionStorage.getItem('ts-auth') !== '1') {
+        window.location.href = '../login/login.html';
+    }
+</script>
+<title>Asistencia · Talentsoft</title>
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="asistencia.css">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body data-page="asistencia" data-login="../login/login.html">
+
+<nav class="sidebar">
+    <div class="logo-menu">
+        <h2 class="logo">Talentsoft</h2>
+        <i class='bx bx-menu toggle-btn'></i>
+    </div>
+    <ul class="list">
+        <li class="list-item" data-page="dashboard">
+            <a href="../index.html">
+                <i class='bx bx-grid-alt'></i>
+                <span class="link-name" style="--i:1;">Dashboard</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="usuario">
+            <a href="../usuario/usuario.html">
+                <i class='bx bx-user'></i>
+                <span class="link-name" style="--i:2;">Usuario</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="asistencia">
+            <a href="../asistencia/asistencia.html">
+                <i class='bx bx-time'></i>
+                <span class="link-name" style="--i:3;">Asistencia</span>
+            </a>
+        </li>
+        <li class="list-item">
+            <a href="#" title="Próximamente">
+                <i class='bx bx-pie-chart-alt-2'></i>
+                <span class="link-name" style="--i:4;">Reportes</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="vacantes,pipeline,banco,evaluacion,historial">
+            <a href="../Gestion_Vacantes.html">
+                <i class='bx bxs-user-account'></i>
+                <span class="link-name" style="--i:5;">Reclutamiento</span>
+            </a>
+        </li>
+        <li class="list-item">
+            <a href="#" title="Próximamente">
+                <i class='bx bx-timer'></i>
+                <span class="link-name" style="--i:6;">Control asistencia</span>
+            </a>
+        </li>
+        <li class="list-item">
+            <a href="#" title="Próximamente">
+                <i class='bx bx-dollar'></i>
+                <span class="link-name" style="--i:7;">Nomina</span>
+            </a>
+        </li>
+        <li class="list-item">
+            <a href="#" title="Próximamente">
+                <i class='bx bx-hourglass'></i>
+                <span class="link-name" style="--i:7;">Horas trabajadas</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="calendario">
+            <a href="../calendario/calendario.html">
+                <i class='bx bx-calendar-event'></i>
+                <span class="link-name" style="--i:8;">Eventos</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="configuracion">
+            <a href="../configuracion/configuracion.html">
+                <i class='bx bx-cog'></i>
+                <span class="link-name" style="--i:9;">Configuración</span>
+            </a>
+        </li>
+    </ul>
+
+    <li class="mode">
+        <div class="moon-sun">
+            <i class='bx bx-moon'></i>
+            <i class='bx bx-sun'></i>
+        </div>
+        <span class="mode-text">Modo claro</span>
+        <div class="mode-switch">
+            <span class="switch"></span>
+        </div>
+    </li>
+
+    <div class="bottom-content">
+        <li>
+            <a href="#">
+                <i class='bx bx-log-out'></i>
+                <span class="link-name" style="--i:10;">Cerrar sesión</span>
+            </a>
+        </li>
+    </div>
+</nav>
+
+<main class="main-content">
+
+        <div class="att-page">
+
+
+            <!-- =================================================
+                 HEADER
+            ================================================== -->
+
+            <div class="page-header">
+
+                <h1>
+                    Asistencia
+                </h1>
+
+                <p>
+                    Entradas/salidas, permisos,
+                    vacaciones, horas extra y
+                    alertas de contrato.
+                </p>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 TABS
+            ================================================== -->
+
+            <div class="att-tabs">
+
+
+                <button
+                    class="att-tab active"
+                    data-tab="marcacion"
+                    type="button">
+
+                    <i class='bx bx-time-five'></i>
+
+                    Marcación
+
+                </button>
+
+
+                <button
+                    class="att-tab"
+                    data-tab="permisos"
+                    type="button">
+
+                    <i class='bx bx-calendar-check'></i>
+
+                    Permisos
+
+                </button>
+
+
+                <button
+                    class="att-tab"
+                    data-tab="vacaciones"
+                    type="button">
+
+                    <i class='bx bx-plane-take'></i>
+
+                    Vacaciones
+
+                </button>
+
+
+                <button
+                    class="att-tab"
+                    data-tab="horas-extra"
+                    type="button">
+
+                    <i class='bx bx-hourglass'></i>
+
+                    Horas extra
+
+                </button>
+
+
+                <button
+                    class="att-tab"
+                    data-tab="alertas"
+                    type="button">
+
+                    <i class='bx bx-error'></i>
+
+                    Alertas
+
+                </button>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 MARCACIÓN
+            ================================================== -->
+
+            <section
+                class="att-panel active"
+                id="panel-marcacion">
+
+
+                <div class="att-stats-grid">
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-card-head">
+
+                            <i class='bx bx-trending-up'></i>
+
+                            Horas acumuladas
+
+                        </div>
+
+                        <div
+                            class="stat-value"
+                            id="horasAcumuladas">
+
+                            38.5h
+
+                            <small>
+                                / 48h
+                            </small>
+
+                        </div>
+
+
+                        <div class="progress-bar">
+
+                            <div
+                                class="progress-fill"
+                                id="horasProgress"
+                                style="width:80%;">
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="stat-caption">
+
+                            80% de la meta quincenal
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-card-head">
+
+                            <i class='bx bx-error-circle'></i>
+
+                            Novedades este mes
+
+                        </div>
+
+                        <div class="stat-value">
+
+                            0
+
+                            <small>
+                                registros
+                            </small>
+
+                        </div>
+
+
+                        <span
+                            class="status-badge status-accepted">
+
+                            <i class='bx bx-check-circle'></i>
+
+                            Sin novedades
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- RELOJ -->
+
+                <div class="clock-card">
+
+
+                    <div
+                        class="clock-time"
+                        id="clockTime">
+
+                        00:00:00
+
+                        <span
+                            class="clock-ampm"
+                            id="clockAmpm">
+
+                            AM
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="clock-date">
+
+                        <i class='bx bx-calendar'></i>
+
+                        <span id="clockDate">
+                            Cargando fecha...
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="turno-status"
+                        id="turnoStatus">
+
+                        <span class="dot"></span>
+
+                        Aguardando entrada
+
+                    </div>
+
+
+
+                    <!-- BOTONES -->
+
+                    <div class="punch-grid">
+
+
+                        <button
+                            class="punch-btn punch-green"
+                            id="btnEntrada"
+                            type="button">
+
+                            <i class='bx bx-log-in-circle'></i>
+
+                            <span class="punch-title">
+                                Registrar Entrada
+                            </span>
+
+                            <span class="punch-sub">
+                                Inicio de turno
+                            </span>
+
+                        </button>
+
+
+
+                        <button
+                            class="punch-btn punch-amber"
+                            id="btnBreak"
+                            type="button"
+                            disabled>
+
+                            <i class='bx bx-coffee'></i>
+
+                            <span class="punch-title">
+                                Break / Almuerzo
+                            </span>
+
+                            <span class="punch-sub">
+                                Pausa programada
+                            </span>
+
+                        </button>
+
+
+
+                        <button
+                            class="punch-btn punch-blue"
+                            id="btnReunion"
+                            type="button"
+                            disabled>
+
+                            <i class='bx bx-group'></i>
+
+                            <span class="punch-title">
+                                Reunión
+                            </span>
+
+                            <span class="punch-sub">
+                                Actividad institucional
+                            </span>
+
+                        </button>
+
+
+
+                        <button
+                            class="punch-btn punch-red"
+                            id="btnSalida"
+                            type="button"
+                            disabled>
+
+                            <i class='bx bx-log-out-circle'></i>
+
+                            <span class="punch-title">
+                                Registrar Salida
+                            </span>
+
+                            <span class="punch-sub">
+                                Fin de turno
+                            </span>
+
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- REGISTRO -->
+
+                    <div class="turno-log">
+
+                        <h4>
+
+                            <i class='bx bx-list-ul'></i>
+
+                            Registro del turno
+
+                        </h4>
+
+
+                        <div id="turnoLogList">
+
+                            <div class="turno-empty">
+
+                                Aún no hay marcaciones hoy.
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 PERMISOS
+            ================================================== -->
+
+            <section
+                class="att-panel"
+                id="panel-permisos">
+
+                <div class="section-head">
+
+                    <div>
+
+                        <h3>
+                            Solicitud de permisos
+                        </h3>
+
+                        <p>
+                            Historial y nuevas solicitudes
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="btn-primary"
+                        id="btnNuevoPermiso"
+                        type="button">
+
+                        <i class='bx bx-plus'></i>
+
+                        Nueva solicitud
+
+                    </button>
+
+                </div>
+
+
+                <form
+                    class="new-request-form"
+                    id="formPermiso">
+
+                    <div class="form-grid">
+
+                        <div class="form-field">
+
+                            <label>
+                                Tipo de permiso
+                            </label>
+
+                            <select id="permisoTipo">
+
+                                <option>
+                                    Cita médica
+                                </option>
+
+                                <option>
+                                    Calamidad doméstica
+                                </option>
+
+                                <option>
+                                    Permiso personal
+                                </option>
+
+                                <option>
+                                    Diligencia legal
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-field">
+
+                            <label>
+                                Fecha
+                            </label>
+
+                            <input
+                                type="date"
+                                id="permisoFecha">
+
+                        </div>
+
+
+                        <div class="form-field">
+
+                            <label>
+                                Duración
+                            </label>
+
+                            <select id="permisoDuracion">
+
+                                <option>
+                                    Medio día
+                                </option>
+
+                                <option>
+                                    Día completo
+                                </option>
+
+                                <option>
+                                    Por horas
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label>
+                            Motivo
+                        </label>
+
+                        <textarea
+                            id="permisoMotivo"
+                            placeholder="Describe el motivo...">
+                        </textarea>
+
+                    </div>
+
+
+                    <button
+                        class="btn-primary"
+                        type="submit">
+
+                        <i class='bx bx-send'></i>
+
+                        Enviar solicitud
+
+                    </button>
+
+
+                    <button
+                        class="btn-secondary"
+                        type="button"
+                        id="btnCancelarPermiso">
+
+                        Cancelar
+
+                    </button>
+
+                </form>
+
+
+                <div class="request-list">
+
+                    <div class="request-card">
+
+                        <div class="request-icon">
+
+                            <i class='bx bx-plus-medical'></i>
+
+                        </div>
+
+
+                        <div class="request-body">
+
+                            <h4>
+                                Cita médica
+                            </h4>
+
+                            <p>
+                                Medio día · Control médico general
+                            </p>
+
+                        </div>
+
+
+                        <span
+                            class="status-badge status-accepted">
+
+                            Aprobado
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="request-card">
+
+                        <div class="request-icon">
+
+                            <i class='bx bx-briefcase'></i>
+
+                        </div>
+
+
+                        <div class="request-body">
+
+                            <h4>
+                                Diligencia legal
+                            </h4>
+
+                            <p>
+                                Día completo · Trámite notarial
+                            </p>
+
+                        </div>
+
+
+                        <span
+                            class="status-badge status-pending">
+
+                            Pendiente
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 VACACIONES
+            ================================================== -->
+
+            <section
+                class="att-panel"
+                id="panel-vacaciones">
+
+                <div class="section-head">
+
+                    <div>
+
+                        <h3>
+                            Gestión de vacaciones
+                        </h3>
+
+                        <p>
+                            Historial de solicitudes
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="btn-primary"
+                        type="button">
+
+                        <i class='bx bx-plus'></i>
+
+                        Solicitar vacaciones
+
+                    </button>
+
+                </div>
+
+
+                <div class="att-stats-grid">
+
+                    <div class="stat-card">
+
+                        <div class="stat-card-head">
+
+                            <i class='bx bx-plane-take'></i>
+
+                            Días disponibles
+
+                        </div>
+
+
+                        <div class="stat-value">
+
+                            9
+
+                            <small>
+                                / 15 días
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-card-head">
+
+                            <i class='bx bx-calendar-star'></i>
+
+                            Próximas vacaciones
+
+                        </div>
+
+
+                        <div class="stat-value small-date">
+
+                            15 - 22 Dic 2026
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="request-list">
+
+                    <div class="request-card">
+
+                        <div class="request-icon">
+
+                            <i class='bx bx-plane-take'></i>
+
+                        </div>
+
+
+                        <div class="request-body">
+
+                            <h4>
+                                Vacaciones de fin de año
+                            </h4>
+
+                            <p>
+                                8 días hábiles ·
+                                15 al 22 de diciembre
+                            </p>
+
+                        </div>
+
+
+                        <span
+                            class="status-badge status-pending">
+
+                            Por aprobar
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 HORAS EXTRA
+            ================================================== -->
+
+            <section
+                class="att-panel"
+                id="panel-horas-extra">
+
+                <div class="att-stats-grid">
+
+                    <div class="stat-card">
+
+                        <div class="stat-card-head">
+
+                            <i class='bx bx-hourglass'></i>
+
+                            Horas extra este mes
+
+                        </div>
+
+
+                        <div class="stat-value">
+
+                            12.5h
+
+                            <small>
+                                / 20h máx.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-card-head">
+
+                            <i class='bx bx-check-double'></i>
+
+                            Pendientes
+
+                        </div>
+
+
+                        <div class="stat-value">
+
+                            1
+
+                            <small>
+                                registro
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="section-head">
+
+                    <div>
+
+                        <h3>
+                            Horas extras
+                        </h3>
+
+                        <p>
+                            Registro de tiempo adicional
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="btn-primary"
+                        type="button">
+
+                        <i class='bx bx-plus'></i>
+
+                        Registrar horas
+
+                    </button>
+
+                </div>
+
+
+                <div class="request-list">
+
+                    <div class="request-card">
+
+                        <div class="request-icon">
+
+                            <i class='bx bx-hourglass'></i>
+
+                        </div>
+
+
+                        <div class="request-body">
+
+                            <h4>
+                                Cierre de pedido
+                            </h4>
+
+                            <p>
+                                3.5 horas extra
+                            </p>
+
+                        </div>
+
+
+                        <span
+                            class="status-badge status-accepted">
+
+                            Aprobado
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 ALERTAS
+            ================================================== -->
+
+            <section
+                class="att-panel"
+                id="panel-alertas">
+
+                <div class="section-head">
+
+                    <div>
+
+                        <h3>
+                            Alertas de contrato
+                        </h3>
+
+                        <p>
+                            Contratos próximos a vencer
+                        </p>
+
+                    </div>
+
+
+                    <span
+                        class="status-badge status-rejected">
+
+                        <i class='bx bx-error'></i>
+
+                        1 urgente
+
+                    </span>
+
+                </div>
+
+
+                <div class="request-list">
+
+
+                    <div
+                        class="alert-card urgency-high">
+
+                        <div class="alert-icon">
+
+                            <i class='bx bx-error'></i>
+
+                        </div>
+
+
+                        <div class="alert-body">
+
+                            <h4>
+                                Laura Martínez
+                            </h4>
+
+                            <p>
+                                Contrato a término fijo.
+                                Vence 25 de agosto de 2026.
+                            </p>
+
+                        </div>
+
+
+                        <div class="alert-days">
+
+                            <div class="days-num">
+                                6
+                            </div>
+
+                            <div class="days-label">
+                                días
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="alert-card urgency-medium">
+
+                        <div class="alert-icon">
+
+                            <i class='bx bx-time-five'></i>
+
+                        </div>
+
+
+                        <div class="alert-body">
+
+                            <h4>
+                                Juan Ramírez
+                            </h4>
+
+                            <p>
+                                Contrato a término fijo.
+                                Vence 10 de septiembre de 2026.
+                            </p>
+
+                        </div>
+
+
+                        <div class="alert-days">
+
+                            <div class="days-num">
+                                22
+                            </div>
+
+                            <div class="days-label">
+                                días
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+<script src="../js/script.js"></script>
+<script src="asistencia.js"></script>
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+    if (localStorage.getItem('ts-auth') !== '1' && sessionStorage.getItem('ts-auth') !== '1') {
+        window.location.href = '../../login/login.html';
+    }
+</script>
+<title>Salud Ocupacional · Talentsoft</title>
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="salud.css">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body data-page="usuario" data-login="../../login/login.html">
+
+<nav class="sidebar">
+    <div class="logo-menu">
+        <h2 class="logo">Talentsoft</h2>
+        <i class='bx bx-menu toggle-btn'></i>
+    </div>
+    <ul class="list">
+        <li class="list-item" data-page="dashboard">
+            <a href="../../index.html">
+                <i class='bx bx-grid-alt'></i>
+                <span class="link-name" style="--i:1;">Dashboard</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="usuario">
+            <a href="../usuario.html">
+                <i class='bx bx-user'></i>
+                <span class="link-name" style="--i:2;">Usuario</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="asistencia">
+            <a href="../../asistencia/asistencia.html">
+                <i class='bx bx-time'></i>
+                <span class="link-name" style="--i:3;">Asistencia</span>
+            </a>
+        </li>
+        <li class="list-item">
+            <a href="#" title="Próximamente">
+                <i class='bx bx-pie-chart-alt-2'></i>
+                <span class="link-name" style="--i:4;">Reportes</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="vacantes,pipeline,banco,evaluacion,historial">
+            <a href="../../Gestion_Vacantes.html">
+                <i class='bx bxs-user-account'></i>
+                <span class="link-name" style="--i:5;">Reclutamiento</span>
+            </a>
+        </li>
+        <li class="list-item">
+            <a href="#" title="Próximamente">
+                <i class='bx bx-timer'></i>
+                <span class="link-name" style="--i:6;">Control asistencia</span>
+            </a>
+        </li>
+        <li class="list-item">
+            <a href="#" title="Próximamente">
+                <i class='bx bx-dollar'></i>
+                <span class="link-name" style="--i:7;">Nomina</span>
+            </a>
+        </li>
+        <li class="list-item">
+            <a href="#" title="Próximamente">
+                <i class='bx bx-hourglass'></i>
+                <span class="link-name" style="--i:7;">Horas trabajadas</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="calendario">
+            <a href="../../calendario/calendario.html">
+                <i class='bx bx-calendar-event'></i>
+                <span class="link-name" style="--i:8;">Eventos</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="configuracion">
+            <a href="../../configuracion/configuracion.html">
+                <i class='bx bx-cog'></i>
+                <span class="link-name" style="--i:9;">Configuración</span>
+            </a>
+        </li>
+    </ul>
+
+    <li class="mode">
+        <div class="moon-sun">
+            <i class='bx bx-moon'></i>
+            <i class='bx bx-sun'></i>
+        </div>
+        <span class="mode-text">Modo claro</span>
+        <div class="mode-switch">
+            <span class="switch"></span>
+        </div>
+    </li>
+
+    <div class="bottom-content">
+        <li>
+            <a href="#">
+                <i class='bx bx-log-out'></i>
+                <span class="link-name" style="--i:10;">Cerrar sesión</span>
+            </a>
+        </li>
+    </div>
+</nav>
+
+<main class="main-content">
+        <div class="salud-page">
+            <div class="salud-container">
+                <div class="page-header">
+                    <div>
+                        <span class="page-kicker">USUARIO</span>
+                        <h1><i class='bx bx-plus-medical'></i> Salud Ocupacional</h1>
+                        <p>Materiales, pausas activas y recomendaciones dirigidas al personal.</p>
+                    </div>
+                    <button type="button" class="admin-toggle" id="btn-vista-admin">
+                        <i class='bx bx-shield-quarter'></i>
+                        Vista administrador
+                    </button>
+                </div>
+
+                <button class="back-btn" id="btn-volver">
+                    <i class='bx bx-arrow-back'></i>
+                    Volver a Usuario
+                </button>
+
+                <section id="vista-empleado" class="view-section">
+                    <div class="section-title">
+                        <div>
+                            <h2>Salud Ocupacional</h2>
+                            <p>Consulta los materiales dirigidos a ti o a todos los empleados.</p>
+                        </div>
+                        <span class="count-badge" id="contador-materiales">0 materiales</span>
+                    </div>
+
+                    <div id="lista-materiales" class="materials-list"></div>
+                    <div id="estado-vacio" class="empty-state hidden">
+                        <i class='bx bx-file'></i>
+                        <h3>No hay materiales disponibles</h3>
+                        <p>Cuando se publique un material dirigido a ti, aparecerá aquí.</p>
+                    </div>
+                </section>
+
+                <section id="detalle-material" class="detail-section hidden">
+                    <button class="back-link" id="btn-volver-lista">
+                        <i class='bx bx-arrow-back'></i> Volver a Salud Ocupacional
+                    </button>
+                    <div class="detail-card">
+                        <div class="detail-heading">
+                            <div class="detail-icon"><i class='bx bx-plus-medical'></i></div>
+                            <div>
+                                <span class="detail-label">SALUD OCUPACIONAL</span>
+                                <h2 id="detalle-asunto"></h2>
+                            </div>
+                        </div>
+                        <div class="detail-grid">
+                            <div class="info-box"><span>Fecha</span><strong id="detalle-fecha"></strong></div>
+                            <div class="info-box"><span>Dirigido a</span><strong id="detalle-destinatarios"></strong></div>
+                        </div>
+                        <div class="reason-box">
+                            <h3>Descripción</h3>
+                            <p id="detalle-descripcion"></p>
+                        </div>
+                        <div class="pdf-box">
+                            <div class="pdf-icon"><i class='bx bxs-file-pdf'></i></div>
+                            <div>
+                                <strong id="detalle-pdf"></strong>
+                                <span>Documento PDF</span>
+                            </div>
+                            <div class="detail-actions">
+                                <button type="button" class="secondary-btn" id="btn-ver-pdf"><i class='bx bx-show'></i> Ver PDF</button>
+                                <button type="button" class="primary-btn" id="btn-descargar-pdf"><i class='bx bx-download'></i> Descargar</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="vista-admin" class="hidden">
+                    <div class="admin-header">
+                        <div>
+                            <h2>Administrar salud ocupacional</h2>
+                            <p>Crea materiales y selecciona a quiénes estarán dirigidos.</p>
+                        </div>
+                        <button type="button" class="secondary-btn" id="btn-vista-empleado">
+                            <i class='bx bx-user'></i> Vista trabajador
+                        </button>
+                    </div>
+
+                    <div class="admin-grid">
+                        <section class="admin-card">
+                            <div class="admin-card-title">
+                                <div class="mini-icon"><i class='bx bx-plus'></i></div>
+                                <div>
+                                    <h3>Crear material</h3>
+                                    <p>Publica ejercicios, pausas activas o recomendaciones.</p>
+                                </div>
+                            </div>
+
+                            <form id="form-material" class="admin-form">
+                                <div class="form-group">
+                                    <label for="asunto">Asunto</label>
+                                    <input type="text" id="asunto" maxlength="100" required placeholder="Ej. Pausas activas - Jornada laboral">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="fecha">Fecha</label>
+                                    <input type="date" id="fecha" required>
+                                </div>
+
+                                <div class="form-group full-width">
+                                    <label for="descripcion">Descripción</label>
+                                    <textarea id="descripcion" rows="5" maxlength="500" required placeholder="Describe brevemente el material o actividad..."></textarea>
+                                </div>
+
+                                <div class="form-group full-width">
+                                    <label>Destinatarios</label>
+                                    <div class="destinatarios-box" id="destinatarios-box">
+                                        <button type="button" class="destinatarios-toggle" id="destinatarios-toggle" aria-expanded="false">
+                                            <span><i class='bx bx-group'></i> <span id="destinatarios-resumen">Todos los empleados</span></span>
+                                            <i class='bx bx-chevron-down destinatarios-chevron'></i>
+                                        </button>
+
+                                        <div class="destinatarios-panel hidden" id="destinatarios-panel">
+                                            <label class="destinatario-option">
+                                                <input type="checkbox" name="destinatario" value="todos" checked>
+                                                <span>Todos los empleados</span>
+                                            </label>
+                                            <label class="destinatario-option">
+                                                <input type="checkbox" name="destinatario" value="empleados">
+                                                <span>Empleados</span>
+                                            </label>
+                                            <label class="destinatario-option">
+                                                <input type="checkbox" name="destinatario" value="jefes">
+                                                <span>Jefes</span>
+                                            </label>
+                                            <label class="destinatario-option">
+                                                <input type="checkbox" name="destinatario" value="entrevistadores">
+                                                <span>Entrevistadores</span>
+                                            </label>
+                                        </div>
+                                        <small>Selecciona uno o varios destinatarios. La lista se puede plegar.</small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group full-width">
+                                    <label for="pdf">PDF con ejercicios o material</label>
+                                    <input type="file" id="pdf" accept="application/pdf" required>
+                                    <small><i class='bx bxs-file-pdf'></i> Selecciona un archivo PDF.</small>
+                                </div>
+
+                                <div class="form-actions full-width">
+                                    <button type="reset" class="secondary-btn">Limpiar</button>
+                                    <button type="submit" class="primary-btn"><i class='bx bx-send'></i> Publicar material</button>
+                                </div>
+                            </form>
+                        </section>
+
+                        <section class="admin-card admin-list-card">
+                            <div class="admin-card-title">
+                                <div class="mini-icon"><i class='bx bx-folder-open'></i></div>
+                                <div>
+                                    <h3>Materiales publicados</h3>
+                                    <p>Consulta lo que ya fue publicado.</p>
+                                </div>
+                            </div>
+                            <div id="lista-admin" class="admin-list"></div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+
+<script src="../../js/script.js"></script>
+<script src="salud.js"></script>
+</body>
+</html>
