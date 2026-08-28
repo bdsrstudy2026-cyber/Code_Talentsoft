@@ -10,7 +10,7 @@
 
     margin: 0 auto;
 
-    color: var(--color-texto);
+    color: white;
 }
 
 
@@ -36,7 +36,7 @@
 
 .page-header p {
 
-    color: var(--color-texto-suave);
+    color: #94a3b8;
 
     font-size: 14px;
 }
@@ -54,9 +54,9 @@
 
     gap: 20px;
 
-    background: var(--bg-panel);
+    background: #1e293b;
 
-    border: 1px solid var(--border-panel);
+    border: 1px solid #334155;
 
     border-radius: 12px;
 
@@ -78,7 +78,7 @@
 
     border-radius: 20px;
 
-    background: var(--bg-panel-alt);
+    background: #0f172a;
 
     color: #60a5fa;
 
@@ -116,7 +116,7 @@
 
     margin-top: 4px;
 
-    color: var(--color-texto-suave);
+    color: #94a3b8;
 
     font-size: 14px;
 }
@@ -152,7 +152,7 @@
 
     margin-top: 5px;
 
-    color: var(--color-texto-suave);
+    color: #94a3b8;
 
     font-size: 14px;
 }
@@ -183,13 +183,13 @@
 
     padding: 20px;
 
-    background: var(--bg-panel);
+    background: #1e293b;
 
-    border: 1px solid var(--border-panel);
+    border: 1px solid #334155;
 
     border-radius: 12px;
 
-    color: var(--color-texto);
+    color: white;
 
     font-size: 15px;
 
@@ -198,8 +198,6 @@
     font-weight: 500;
 
     text-align: left;
-
-    text-decoration: none;
 
     cursor: pointer;
 
@@ -211,7 +209,7 @@
 
     font-size: 24px;
 
-    color: var(--color-primario);
+    color: #ff5722;
 
     flex-shrink: 0;
 }
@@ -219,14 +217,33 @@
 
 .usr-action-btn:hover {
 
-    border-color: var(--color-primario);
+    border-color: #ff5722;
 
     transform: translateY(-3px);
 }
 
 
-/* El modo claro no necesita reglas aparte: los colores de
-   este archivo ya usan las variables de css/style.css. */
+/* =====================================================
+   MODO CLARO
+===================================================== */
+
+.light-mode .usr-profile-card,
+.light-mode .usr-action-btn {
+
+    background: #ffffff;
+
+    border-color: #e2e8f0;
+
+    color: #1c1c1e;
+}
+
+
+.light-mode .usr-profile-title h2,
+.light-mode .section-head h3 {
+
+    color: #1c1c1e;
+}
+
 
 /* =====================================================
    RESPONSIVE
@@ -239,6 +256,404 @@
         flex-direction: column;
 
         text-align: center;
+    }
+
+}
+
+/* =====================================================
+   PERFIL DE EMPLEADO (vista que llega desde Configuración)
+===================================================== */
+
+.usr-employee-view {
+
+    display: none;
+}
+
+
+.usr-employee-view.show {
+
+    display: block;
+}
+
+
+.usr-volver {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin-bottom: 16px;
+
+    color: #94a3b8;
+
+    font-size: 14px;
+
+    text-decoration: none;
+}
+
+
+.usr-volver:hover {
+
+    color: var(--color-texto);
+}
+
+
+.usr-profile-detail-card {
+
+    background: #1e293b;
+
+    border: 1px solid #334155;
+
+    border-radius: 14px;
+
+    padding: 28px;
+
+    max-width: 900px;
+}
+
+
+/* ===== ENCABEZADO ===== */
+
+.usr-detail-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    margin-bottom: 25px;
+}
+
+
+.usr-detail-avatar {
+
+    width: 64px;
+
+    height: 64px;
+
+    flex-shrink: 0;
+
+    border-radius: 16px;
+
+    background: #0f172a;
+
+    color: #60a5fa;
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.usr-detail-title h2 {
+
+    font-size: 22px;
+
+    color: var(--color-texto);
+}
+
+
+.usr-detail-title p {
+
+    margin-top: 4px;
+
+    color: #94a3b8;
+
+    font-size: 14px;
+}
+
+
+/* ===== DATOS RÁPIDOS ===== */
+
+.usr-detail-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(180px, 1fr));
+
+    gap: 15px;
+
+    margin-bottom: 30px;
+}
+
+
+.usr-detail-item {
+
+    background: #0f172a;
+
+    border: 1px solid #334155;
+
+    border-radius: 10px;
+
+    padding: 14px 16px;
+}
+
+
+.usr-detail-item span {
+
+    display: block;
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    color: #94a3b8;
+
+    font-weight: bold;
+
+    margin-bottom: 6px;
+}
+
+
+.usr-detail-item p {
+
+    font-size: 15px;
+
+    color: #f8fafc;
+}
+
+
+/* ===== SUBTÍTULOS / TEXTO ===== */
+
+.usr-detail-subtitle {
+
+    font-size: 16px;
+
+    color: var(--color-texto);
+
+    margin-bottom: 12px;
+}
+
+
+.usr-detail-text {
+
+    color: #94a3b8;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+.usr-detail-empty {
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    font-style: italic;
+}
+
+
+/* ===== HABILIDADES ===== */
+
+.usr-detail-skills {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-bottom: 25px;
+}
+
+
+.usr-skill-tag {
+
+    padding: 6px 14px;
+
+    background: #334155;
+
+    color: #e2e8f0;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+}
+
+
+.usr-detail-divider {
+
+    border: none;
+
+    border-top: 1px solid #334155;
+
+    margin: 10px 0 25px 0;
+}
+
+
+/* ===== HISTORIAL LABORAL ===== */
+
+.usr-historial-btn {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 20px;
+
+    padding: 10px 16px;
+
+    background: transparent;
+
+    border: 1px solid #334155;
+
+    border-radius: 8px;
+
+    color: #60a5fa;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    font-family: 'Poppins', sans-serif;
+
+    text-decoration: underline;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+
+.usr-historial-btn:hover {
+
+    border-color: #60a5fa;
+
+    background: rgba(96, 165, 250, .08);
+}
+
+
+.usr-historial-list {
+
+    display: none;
+
+    margin-top: 18px;
+
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+
+.usr-historial-list.show {
+
+    display: flex;
+}
+
+
+.usr-historial-item {
+
+    display: flex;
+
+    gap: 15px;
+
+    padding: 14px;
+
+    background: #0f172a;
+
+    border: 1px solid #334155;
+
+    border-radius: 10px;
+}
+
+
+.usr-historial-fecha {
+
+    min-width: 90px;
+
+    flex-shrink: 0;
+
+    color: #ff5722;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+.usr-historial-body h4 {
+
+    font-size: 14px;
+
+    color: var(--color-texto);
+
+    margin-bottom: 4px;
+}
+
+
+.usr-historial-body p {
+
+    font-size: 13px;
+
+    color: #94a3b8;
+
+    line-height: 1.5;
+}
+
+
+/* =====================================================
+   MODO CLARO
+===================================================== */
+
+.light-mode .usr-profile-detail-card,
+.light-mode .usr-detail-item,
+.light-mode .usr-historial-item {
+
+    background: #ffffff;
+
+    border-color: #e2e8f0;
+}
+
+.light-mode .usr-detail-title h2,
+.light-mode .usr-detail-subtitle,
+.light-mode .usr-historial-body h4 {
+
+    color: #1c1c1e;
+}
+
+.light-mode .usr-detail-item p {
+
+    color: #1c1c1e;
+}
+
+.light-mode .usr-skill-tag {
+
+    background: #eef2ff;
+
+    color: #4361ee;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .usr-detail-header {
+
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+    .usr-historial-item {
+
+        flex-direction: column;
     }
 
 }

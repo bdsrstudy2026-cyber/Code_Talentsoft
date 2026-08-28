@@ -1,110 +1,292 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script>
-    if (localStorage.getItem('ts-auth') !== '1' && sessionStorage.getItem('ts-auth') !== '1') {
-        window.location.href = '../login/login.html';
-    }
-</script>
-<title>Usuario · Talentsoft</title>
-<link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="usuario.css">
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Usuario | Talentsoft</title>
+
+
+    <!-- CSS GENERAL -->
+
+    <link rel="stylesheet"
+          href="../style.css">
+
+
+    <!-- CSS USUARIO -->
+
+    <link rel="stylesheet"
+          href="usuario.css">
+
+
+    <!-- BOXICONS -->
+
+    <link
+        href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+        rel="stylesheet">
+
 </head>
-<body data-page="usuario" data-login="../login/login.html">
 
-<nav class="sidebar">
-    <div class="logo-menu">
-        <h2 class="logo">Talentsoft</h2>
-        <i class='bx bx-menu toggle-btn'></i>
-    </div>
-    <ul class="list">
-        <li class="list-item" data-page="dashboard">
-            <a href="../index.html">
-                <i class='bx bx-grid-alt'></i>
-                <span class="link-name" style="--i:1;">Dashboard</span>
-            </a>
-        </li>
-        <li class="list-item" data-page="usuario">
-            <a href="../usuario/usuario.html">
-                <i class='bx bx-user'></i>
-                <span class="link-name" style="--i:2;">Usuario</span>
-            </a>
-        </li>
-        <li class="list-item" data-page="asistencia">
-            <a href="../asistencia/asistencia.html">
-                <i class='bx bx-time'></i>
-                <span class="link-name" style="--i:3;">Asistencia</span>
-            </a>
-        </li>
-        <li class="list-item">
-            <a href="#" title="Próximamente">
-                <i class='bx bx-pie-chart-alt-2'></i>
-                <span class="link-name" style="--i:4;">Reportes</span>
-            </a>
-        </li>
-        <li class="list-item" data-page="vacantes,pipeline,banco,evaluacion,historial">
-            <a href="../Gestion_Vacantes.html">
-                <i class='bx bxs-user-account'></i>
-                <span class="link-name" style="--i:5;">Reclutamiento</span>
-            </a>
-        </li>
-        <li class="list-item">
-            <a href="#" title="Próximamente">
-                <i class='bx bx-timer'></i>
-                <span class="link-name" style="--i:6;">Control asistencia</span>
-            </a>
-        </li>
-        <li class="list-item">
-            <a href="#" title="Próximamente">
-                <i class='bx bx-dollar'></i>
-                <span class="link-name" style="--i:7;">Nomina</span>
-            </a>
-        </li>
-        <li class="list-item">
-            <a href="#" title="Próximamente">
-                <i class='bx bx-hourglass'></i>
-                <span class="link-name" style="--i:7;">Horas trabajadas</span>
-            </a>
-        </li>
-        <li class="list-item" data-page="calendario">
-            <a href="../calendario/calendario.html">
-                <i class='bx bx-calendar-event'></i>
-                <span class="link-name" style="--i:8;">Eventos</span>
-            </a>
-        </li>
-        <li class="list-item" data-page="configuracion">
-            <a href="../configuracion/configuracion.html">
-                <i class='bx bx-cog'></i>
-                <span class="link-name" style="--i:9;">Configuración</span>
-            </a>
-        </li>
-    </ul>
 
-    <li class="mode">
-        <div class="moon-sun">
-            <i class='bx bx-moon'></i>
-            <i class='bx bx-sun'></i>
+<body>
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <nav class="sidebar">
+
+        <div class="logo-menu">
+
+            <h2 class="logo">
+                Talentsoft
+            </h2>
+
+            <i class='bx bx-menu toggle-btn'></i>
+
         </div>
-        <span class="mode-text">Modo claro</span>
-        <div class="mode-switch">
-            <span class="switch"></span>
-        </div>
-    </li>
 
-    <div class="bottom-content">
-        <li>
-            <a href="#">
-                <i class='bx bx-log-out'></i>
-                <span class="link-name" style="--i:10;">Cerrar sesión</span>
-            </a>
+
+        <ul class="list">
+
+
+            <!-- DASHBOARD -->
+
+            <li class="list-item">
+
+                <a href="#"
+                   data-modulo="dashboard">
+
+                    <i class='bx bx-grid-alt'></i>
+
+                    <span class="link-name"
+                          style="--i:1;">
+                        Dashboard
+                    </span>
+
+                </a>
+
+            </li>
+
+
+            <!-- USUARIO -->
+
+            <li class="list-item active">
+
+                <a href="#"
+                   data-modulo="usuario">
+
+                    <i class='bx bx-user'></i>
+
+                    <span class="link-name"
+                          style="--i:2;">
+                        Usuario
+                    </span>
+
+                </a>
+
+            </li>
+
+
+            <!-- ASISTENCIA -->
+
+            <li class="list-item">
+
+                <a href="#"
+                   data-modulo="asistencia">
+
+                    <i class='bx bx-time'></i>
+
+                    <span class="link-name"
+                          style="--i:3;">
+                        Asistencia
+                    </span>
+
+                </a>
+
+            </li>
+
+
+            <!-- REPORTES -->
+
+            <li class="list-item">
+
+                <a href="#"
+                   data-modulo="reportes">
+
+                    <i class='bx bx-pie-chart-alt-2'></i>
+
+                    <span class="link-name"
+                          style="--i:4;">
+                        Reportes
+                    </span>
+
+                </a>
+
+            </li>
+
+
+            <!-- RECLUTAMIENTO -->
+
+            <li class="list-item">
+
+                <a href="#"
+                   data-modulo="reclutamiento">
+
+                    <i class='bx bxs-user-account'></i>
+
+                    <span class="link-name"
+                          style="--i:5;">
+                        Reclutamiento
+                    </span>
+
+                </a>
+
+            </li>
+
+
+            <!-- CONTROL ASISTENCIA -->
+
+            <li class="list-item">
+
+                <a href="#"
+                   data-modulo="control">
+
+                    <i class='bx bx-timer'></i>
+
+                    <span class="link-name"
+                          style="--i:6;">
+                        Control asistencia
+                    </span>
+
+                </a>
+
+            </li>
+
+
+            <!-- NOMINA -->
+
+            <li class="list-item">
+
+                <a href="#"
+                   data-modulo="nomina">
+
+                    <i class='bx bx-dollar'></i>
+
+                    <span class="link-name"
+                          style="--i:7;">
+                        Nomina
+                    </span>
+
+                </a>
+
+            </li>
+
+
+            <!-- HORAS TRABAJADAS -->
+
+            <li class="list-item">
+
+                <a href="#"
+                   data-modulo="horas">
+
+                    <i class='bx bx-hourglass'></i>
+
+                    <span class="link-name"
+                          style="--i:8;">
+                        Horas trabajadas
+                    </span>
+
+                </a>
+
+            </li>
+
+
+            <!-- CONFIGURACIÓN -->
+
+            <li class="list-item">
+
+                <a href="#"
+                   data-modulo="configuracion">
+
+                    <i class='bx bx-cog'></i>
+
+                    <span class="link-name"
+                          style="--i:9;">
+                        Configuración
+                    </span>
+
+                </a>
+
+            </li>
+
+        </ul>
+
+
+        <!-- =================================================
+             MODO
+        ================================================== -->
+
+        <li class="mode">
+
+            <div class="moon-sun">
+
+                <i class='bx bx-moon'></i>
+
+                <i class='bx bx-sun'></i>
+
+            </div>
+
+            <span class="mode-text">
+                Modo oscuro
+            </span>
+
+            <div class="mode-switch">
+
+                <span class="switch"></span>
+
+            </div>
+
         </li>
-    </div>
-</nav>
 
-<main class="main-content">
+
+        <!-- =================================================
+             CERRAR SESIÓN
+        ================================================== -->
+
+        <div class="bottom-content">
+
+            <li>
+
+                <a href="#">
+
+                    <i class='bx bx-log-out'></i>
+
+                    <span class="link-name"
+                          style="--i:10;">
+                        Cerrar sesión
+                    </span>
+
+                </a>
+
+            </li>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =====================================================
+         MÓDULO USUARIO
+    ====================================================== -->
+
+    <main class="main-content">
 
         <div class="usr-page">
 
@@ -128,37 +310,111 @@
 
 
             <!-- =================================================
-                 PERFIL DEL ADMINISTRADOR
+                 VISTA: ADMINISTRADOR (por defecto)
             ================================================== -->
 
-            <div class="usr-profile-card">
+            <div id="usr-admin-view">
 
-                <!-- Espacio reservado para la foto de perfil.
-                     Por ahora solo se ve un ícono; cuando tengan
-                     la foto real, basta con poner una <img>
-                     adentro de este div. -->
+                <!-- =============================================
+                     PERFIL DEL ADMINISTRADOR
+                ============================================== -->
 
-                <div class="usr-photo-placeholder"
-                     id="admin-photo">
+                <div class="usr-profile-card">
 
-                    <i class='bx bx-user'></i>
+                    <!-- Espacio reservado para la foto de perfil.
+                         Por ahora solo se ve un ícono; cuando tengan
+                         la foto real, basta con poner una <img>
+                         adentro de este div. -->
+
+                    <div class="usr-photo-placeholder"
+                         id="admin-photo">
+
+                        <i class='bx bx-user'></i>
+
+                    </div>
+
+
+                    <div class="usr-profile-title">
+
+                        <!-- Nombre de ejemplo: al conectar el login
+                             real, este texto se reemplaza por el
+                             nombre de quien inició sesión. -->
+
+                        <h2 id="admin-name">
+                            Laura Martínez
+                        </h2>
+
+                        <p id="admin-role">
+                            Administradora
+                        </p>
+
+                    </div>
 
                 </div>
 
 
-                <div class="usr-profile-title">
+                <!-- =============================================
+                     MÓDULOS DE BIENESTAR
+                ============================================== -->
 
-                    <!-- Nombre de ejemplo: al conectar el login
-                         real, este texto se reemplaza por el
-                         nombre de quien inició sesión. -->
+                <div class="section-head">
 
-                    <h2 id="admin-name">
-                        Laura Martínez
-                    </h2>
+                    <div>
 
-                    <p id="admin-role">
-                        Administradora
-                    </p>
+                        <h3>
+                            Módulos de bienestar
+                        </h3>
+
+                        <p>
+                            Estos botones aún no tienen función:
+                            cada compañero conectará el suyo con
+                            su propio módulo.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="usr-actions-grid">
+
+                    <button type="button"
+                            class="usr-action-btn"
+                            id="btn-incentivos">
+
+                        <i class='bx bx-gift'></i>
+
+                        <span>
+                            Administrar incentivos
+                        </span>
+
+                    </button>
+
+
+                    <button type="button"
+                            class="usr-action-btn"
+                            id="btn-capacitaciones">
+
+                        <i class='bx bx-chalkboard'></i>
+
+                        <span>
+                            Administrar capacitaciones
+                        </span>
+
+                    </button>
+
+
+                    <button type="button"
+                            class="usr-action-btn"
+                            id="btn-salud">
+
+                        <i class='bx bx-plus-medical'></i>
+
+                        <span>
+                            Administrar salud ocupacional
+                        </span>
+
+                    </button>
 
                 </div>
 
@@ -166,40 +422,160 @@
 
 
             <!-- =================================================
-                 MÓDULOS DE BIENESTAR
+                 VISTA: PERFIL DE EMPLEADO
+                 Se muestra solo cuando se llega desde Configuración
+                 con el enlace "Ver perfil" (?empleado=ID). El
+                 contenido lo llena usuario.js a partir de
+                 EMPLEADOS_DATA (datos-empleados.js).
             ================================================== -->
 
-            <div class="section-head">
-                <div>
-                    <h3>Módulos de bienestar</h3>
-                    <p>Accede a incentivos, capacitaciones y salud ocupacional.</p>
+            <div id="usr-employee-view"
+                 class="usr-employee-view">
+
+                <a href="../configuracion/configuracion.html"
+                   class="usr-volver">
+                    <i class='bx bx-arrow-back'></i>
+                    Volver a Configuración
+                </a>
+
+
+                <div class="usr-profile-detail-card">
+
+                    <!-- =========================================
+                         ENCABEZADO: avatar + nombre + cargo
+                    ========================================== -->
+
+                    <div class="usr-detail-header">
+
+                        <div class="usr-detail-avatar"
+                             id="emp-avatar">
+                        </div>
+
+                        <div class="usr-detail-title">
+
+                            <h2 id="emp-nombre"></h2>
+                            <p id="emp-cargo"></p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =========================================
+                         DATOS RÁPIDOS
+                    ========================================== -->
+
+                    <div class="usr-detail-grid">
+
+                        <div class="usr-detail-item">
+                            <span>Teléfono</span>
+                            <p id="emp-telefono"></p>
+                        </div>
+
+                        <div class="usr-detail-item">
+                            <span>Experiencia</span>
+                            <p id="emp-experiencia"></p>
+                        </div>
+
+                        <div class="usr-detail-item">
+                            <span>Ubicación</span>
+                            <p id="emp-ubicacion"></p>
+                        </div>
+
+                        <!-- En vez de "Disponibilidad" (que es de
+                             un candidato en reclutamiento), aquí
+                             va el área de la empresa textil en la
+                             que trabaja el empleado. -->
+                        <div class="usr-detail-item">
+                            <span>Área asignada</span>
+                            <p id="emp-area"></p>
+                        </div>
+
+                    </div>
+
+
+                    <!-- =========================================
+                         HABILIDADES
+                    ========================================== -->
+
+                    <h3 class="usr-detail-subtitle">
+                        Habilidades destacadas
+                    </h3>
+
+                    <div class="usr-detail-skills"
+                         id="emp-habilidades">
+                    </div>
+
+
+                    <hr class="usr-detail-divider">
+
+
+                    <!-- =========================================
+                         PERFIL PROFESIONAL
+                    ========================================== -->
+
+                    <h3 class="usr-detail-subtitle">
+                        Perfil profesional
+                    </h3>
+
+                    <p id="emp-perfil"
+                       class="usr-detail-text">
+                    </p>
+
+
+                    <!-- =========================================
+                         HISTORIAL LABORAL
+                    ========================================== -->
+
+                    <button type="button"
+                            class="usr-historial-btn"
+                            id="btnHistorialLaboral">
+
+                        <i class='bx bx-history'></i>
+                        Historial laboral
+
+                    </button>
+
+
+                    <div class="usr-historial-list"
+                         id="emp-historial">
+                    </div>
+
                 </div>
-            </div>
-
-            <div class="usr-actions-grid">
-
-                <a class="usr-action-btn" href="incentivos/incentivos.html" id="btn-incentivos">
-                    <i class='bx bx-gift'></i>
-                    <span>Administrar incentivos</span>
-                </a>
-
-                <a class="usr-action-btn" href="capacitacion/capacitacion.html" id="btn-capacitaciones">
-                    <i class='bx bx-chalkboard'></i>
-                    <span>Administrar capacitaciones</span>
-                </a>
-
-                <a class="usr-action-btn" href="salud/salud.html" id="btn-salud">
-                    <i class='bx bx-plus-medical'></i>
-                    <span>Administrar salud ocupacional</span>
-                </a>
 
             </div>
 
         </div>
 
-    </main>
 
-<script src="../js/script.js"></script>
-<script src="usuario.js"></script>
+    <!-- =====================================================
+         JAVASCRIPT GENERAL
+    ====================================================== -->
+
+    <!-- Le dice a script.js que esta página está DENTRO de una
+         carpeta de módulo, así que para volver a la raíz o ir a
+         otra carpeta hay que subir un nivel ("../"). -->
+    <script>
+        window.BASE_PATH = '../';
+    </script>
+
+    <script src="../script.js"></script>
+
+
+    <!-- =====================================================
+         DATOS COMPARTIDOS DE EMPLEADOS
+    ====================================================== -->
+
+    <script src="../datos-empleados.js"></script>
+
+
+    <!-- =====================================================
+         JAVASCRIPT USUARIO
+    ====================================================== -->
+
+    <script src="usuario.js"></script>
+
+
 </body>
+
 </html>
