@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+    // Si no hay sesión abierta, no dejamos ver esta página.
+    if (localStorage.getItem('ts-auth') !== '1' && sessionStorage.getItem('ts-auth') !== '1') {
+        window.location.href = 'login/login.html';
+    }
+</script>
+<title>Gestión de Vacantes · Talentsoft</title>
+<link rel="stylesheet" href="css/style.css">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body data-page="vacantes" data-login="login/login.html">
+
+<nav class="sidebar">
+    <div class="logo-menu">
+        <h2 class="logo">Talentsoft</h2>
+        <i class='bx bx-menu toggle-btn'></i>
+    </div>
+    <ul class="list">
+        <li class="list-item" data-page="dashboard">
+            <a href="index.html">
+                <i class='bx bx-grid-alt'></i>
+                <span class="link-name" style="--i:1;">Dashboard</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="usuario">
+            <a href="usuario/usuario.html">
+                <i class='bx bx-user'></i>
+                <span class="link-name" style="--i:2;">Usuario</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="asistencia">
+            <a href="asistencia/asistencia.html">
+                <i class='bx bx-time'></i>
+                <span class="link-name" style="--i:3;">Asistencia</span>
+            </a>
+        </li>
+        <li class="list-item">
+            <a href="#" title="Próximamente">
+                <i class='bx bx-pie-chart-alt-2'></i>
+                <span class="link-name" style="--i:4;">Reportes</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="vacantes,pipeline,banco,evaluacion,historial">
+            <a href="Gestion_Vacantes.html">
+                <i class='bx bxs-user-account'></i>
+                <span class="link-name" style="--i:5;">Reclutamiento</span>
+            </a>
+        </li>
+        <li class="list-item">
+            <a href="#" title="Próximamente">
+                <i class='bx bx-timer'></i>
+                <span class="link-name" style="--i:6;">Control asistencia</span>
+            </a>
+        </li>
+        <li class="list-item">
+            <a href="#" title="Próximamente">
+                <i class='bx bx-dollar'></i>
+                <span class="link-name" style="--i:7;">Nomina</span>
+            </a>
+        </li>
+        <li class="list-item">
+            <a href="#" title="Próximamente">
+                <i class='bx bx-hourglass'></i>
+                <span class="link-name" style="--i:7;">Horas trabajadas</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="calendario">
+            <a href="calendario/calendario.html">
+                <i class='bx bx-calendar-event'></i>
+                <span class="link-name" style="--i:8;">Eventos</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="configuracion">
+            <a href="configuracion/configuracion.html">
+                <i class='bx bx-cog'></i>
+                <span class="link-name" style="--i:9;">Configuración</span>
+            </a>
+        </li>
+    </ul>
+
+    <li class="mode">
+        <div class="moon-sun">
+            <i class='bx bx-moon'></i>
+            <i class='bx bx-sun'></i>
+        </div>
+        <span class="mode-text">Modo claro</span>
+        <div class="mode-switch">
+            <span class="switch"></span>
+        </div>
+    </li>
+
+    <div class="bottom-content">
+        <li>
+            <a href="#">
+                <i class='bx bx-log-out'></i>
+                <span class="link-name" style="--i:10;">Cerrar sesión</span>
+            </a>
+        </li>
+    </div>
+</nav>
+
+<main class="main-content">
+
+    <header class="content-header">
+        <div class="header-title">
+            <h2>Gestión de Vacantes</h2>
+            <p>Administra las ofertas laborales activas y crea nuevas convocatorias.</p>
+        </div>
+        <button class="btn-primary" id="btnNuevaVacante">
+            <i class="bx bx-plus"></i> Nueva Vacante
+        </button>
+    </header>
+
+    <div class="filter-bar">
+        <input type="text" placeholder="Buscar vacante por cargo..." class="search-input">
+        <select class="filter-select" aria-label="Filtrar vacantes por área">
+            <option value="todas">Todas las áreas</option>
+            <option value="confeccion">Confección</option>
+            <option value="corte">Corte y Trazo</option>
+            <option value="calidad">Control de Calidad</option>
+            <option value="mantenimiento">Mantenimiento</option>
+        </select>
+    </div>
+
+    <section class="vacantes-grid">
+
+        <article class="vacante-card" data-area="confeccion">
+            <div class="card-header">
+                <span class="badge badge-active">Activa</span>
+                <span class="vacante-date">Hace 2 días</span>
+            </div>
+            <h3 class="vacante-title">Operaria de Máquina Plana</h3>
+            <p class="vacante-area">Área: Confección</p>
+            <div class="vacante-info">
+                <div><span>Postulantes</span><strong>12</strong></div>
+                <div><span>Vacantes</span><strong>3</strong></div>
+            </div>
+            <div class="card-actions">
+                <button class="btn-secondary" style="width: 100%;" data-ver-proceso="Operaria de Máquina Plana">Ver proceso</button>
+            </div>
+        </article>
+
+        <article class="vacante-card" data-area="mantenimiento">
+            <div class="card-header">
+                <span class="badge badge-active">Activa</span>
+                <span class="vacante-date">Hace 5 días</span>
+            </div>
+            <h3 class="vacante-title">Mecánico de Maquinaria</h3>
+            <p class="vacante-area">Área: Mantenimiento</p>
+            <div class="vacante-info">
+                <div><span>Postulantes</span><strong>4</strong></div>
+                <div><span>Vacantes</span><strong>1</strong></div>
+            </div>
+            <div class="card-actions">
+                <button class="btn-secondary" style="width: 100%;" data-ver-proceso="Mecánico de Maquinaria">Ver proceso</button>
+            </div>
+        </article>
+
+        <article class="vacante-card" data-area="calidad">
+            <div class="card-header">
+                <span class="badge badge-closed">Cerrada</span>
+                <span class="vacante-date">Hace 15 días</span>
+            </div>
+            <h3 class="vacante-title">Auditor de Calidad</h3>
+            <p class="vacante-area">Área: Control de Calidad</p>
+            <div class="vacante-info">
+                <div><span>Postulantes</span><strong>18</strong></div>
+                <div><span>Vacantes</span><strong>1</strong></div>
+            </div>
+            <div class="card-actions">
+                <button class="btn-secondary" style="width: 100%; opacity: 0.5; cursor: not-allowed;" disabled>Proceso finalizado</button>
+            </div>
+        </article>
+
+    </section>
+
+</main>
+
+<!-- Modal Nueva Vacante -->
+<div class="ts-modal-overlay" id="modalNuevaVacante">
+    <form class="ts-modal" id="formNuevaVacante">
+        <h3>Nueva Vacante</h3>
+
+        <label for="vacanteTitulo">Cargo</label>
+        <input type="text" id="vacanteTitulo" placeholder="Ej: Operaria de Fileteadora" required>
+
+        <label for="vacanteArea">Área</label>
+        <select id="vacanteArea">
+            <option value="confeccion">Confección</option>
+            <option value="corte">Corte y Trazo</option>
+            <option value="calidad">Control de Calidad</option>
+        </select>
+
+        <label for="vacanteCupos">Número de vacantes</label>
+        <input type="number" id="vacanteCupos" min="1" value="1">
+
+        <div class="ts-modal-actions">
+            <button type="button" class="btn-secondary" id="btnCancelarVacante">Cancelar</button>
+            <button type="submit" class="btn-primary">Crear vacante</button>
+        </div>
+    </form>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>

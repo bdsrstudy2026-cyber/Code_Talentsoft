@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+    if (localStorage.getItem('ts-auth') !== '1' && sessionStorage.getItem('ts-auth') !== '1') {
+        window.location.href = '../login/login.html';
+    }
+</script>
+<title>Reportes · Talentsoft</title>
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="reportes.css">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body data-page="reportes" data-login="../login/login.html">
+
+<nav class="sidebar">
+    <div class="logo-menu">
+        <h2 class="logo">Talentsoft</h2>
+        <i class='bx bx-menu toggle-btn'></i>
+    </div>
+    <ul class="list">
+        <li class="list-item" data-page="dashboard">
+            <a href="../index.html">
+                <i class='bx bx-grid-alt'></i>
+                <span class="link-name" style="--i:1;">Dashboard</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="usuario">
+            <a href="../usuario/usuario.html">
+                <i class='bx bx-user'></i>
+                <span class="link-name" style="--i:2;">Usuario</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="asistencia">
+            <a href="../asistencia/asistencia.html">
+                <i class='bx bx-time'></i>
+                <span class="link-name" style="--i:3;">Asistencia</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="reportes">
+            <a href="../reportes/reportes.html">
+                <i class='bx bx-pie-chart-alt-2'></i>
+                <span class="link-name" style="--i:4;">Reportes</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="vacantes,pipeline,banco,evaluacion,historial">
+            <a href="../Gestion_Vacantes.html">
+                <i class='bx bxs-user-account'></i>
+                <span class="link-name" style="--i:5;">Reclutamiento</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="calendario">
+            <a href="../calendario/calendario.html">
+                <i class='bx bx-calendar-event'></i>
+                <span class="link-name" style="--i:6;">Eventos</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="configuracion">
+            <a href="../configuracion/configuracion.html">
+                <i class='bx bx-cog'></i>
+                <span class="link-name" style="--i:7;">Configuración</span>
+            </a>
+        </li>
+    </ul>
+
+    <li class="mode">
+        <div class="moon-sun">
+            <i class='bx bx-moon'></i>
+            <i class='bx bx-sun'></i>
+        </div>
+        <span class="mode-text">Modo claro</span>
+        <div class="mode-switch">
+            <span class="switch"></span>
+        </div>
+    </li>
+
+    <div class="bottom-content">
+        <li>
+            <a href="#">
+                <i class='bx bx-log-out'></i>
+                <span class="link-name" style="--i:8;">Cerrar sesión</span>
+            </a>
+        </li>
+    </div>
+</nav>
+
+<main class="main-content">
+
+    <div class="rep-page">
+
+        <!-- =================================================
+             HEADER
+        ================================================== -->
+
+        <div class="section-head">
+            <div>
+                <h1>Reportes e Indicadores Estadísticos</h1>
+                <p>Análisis de gestión humana</p>
+            </div>
+
+            <button type="button" class="btn-secondary" id="btnActualizarDatos">
+                <i class='bx bx-refresh'></i>
+                Actualizar datos
+            </button>
+        </div>
+
+
+        <!-- =================================================
+             FILTROS DEL PERÍODO
+        ================================================== -->
+
+        <div class="rep-filters">
+
+            <div class="rep-filter-group">
+                <label class="rep-filter-label" for="rep-mes-select">
+                    <i class='bx bx-filter-alt'></i> Filtros del período · Mes
+                </label>
+                <select class="rep-filter-select" id="rep-mes-select">
+                    <option value="0">Enero 2026</option>
+                    <option value="1">Febrero 2026</option>
+                    <option value="2">Marzo 2026</option>
+                    <option value="3">Abril 2026</option>
+                    <option value="4" selected>Mayo 2026</option>
+                </select>
+            </div>
+
+            <div class="rep-filter-group grow">
+                <span class="rep-filter-label">Taller / Área</span>
+                <div class="rep-pill-group">
+                    <button type="button" class="rep-pill active" data-taller="todos">Todos</button>
+                    <button type="button" class="rep-pill" data-taller="tallerA">Taller A</button>
+                    <button type="button" class="rep-pill" data-taller="tallerB">Taller B</button>
+                    <button type="button" class="rep-pill" data-taller="tallerC">Taller C</button>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             TARJETAS KPI
+             Reutilizan .dashboard-grid / .stat-card de
+             css/style.css para que se vean igual que en el
+             Dashboard.
+        ================================================== -->
+
+        <section class="dashboard-grid rep-kpi-grid">
+
+            <div class="stat-card">
+                <div class="stat-icon"><i class='bx bx-user-x'></i></div>
+                <div>
+                    <div class="stat-value" id="kpi-ausentismo">0%</div>
+                    <div class="stat-label">Ausentismo del mes</div>
+                    <div class="rep-kpi-trend" id="kpi-ausentismo-trend"></div>
+                </div>
+            </div>
+
+            <div class="stat-card rep-kpi-alert">
+                <div class="stat-icon"><i class='bx bx-time-five'></i></div>
+                <div>
+                    <div class="stat-value" id="kpi-retardo">0h</div>
+                    <div class="stat-label">Horas retardo mes</div>
+                    <div class="rep-kpi-trend" id="kpi-retardo-trend"></div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon"><i class='bx bx-trending-up'></i></div>
+                <div>
+                    <div class="stat-value" id="kpi-productividad">0%</div>
+                    <div class="stat-label">Productividad media</div>
+                    <div class="rep-kpi-trend" id="kpi-productividad-trend"></div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon"><i class='bx bx-bell'></i></div>
+                <div>
+                    <div class="stat-value" id="kpi-novedades">0</div>
+                    <div class="stat-label">Novedades emitidas</div>
+                    <div class="rep-kpi-trend neutral" id="kpi-novedades-trend"></div>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             GRÁFICAS
+        ================================================== -->
+
+        <section class="rep-charts-grid">
+
+            <div class="rep-chart-card">
+                <div class="rep-chart-head">
+                    <div>
+                        <h3>Evolución de Ausentismo Mensual</h3>
+                        <p>Comparativo: proyección sin sistema vs. gestión con Talentsoft</p>
+                    </div>
+                    <span class="rep-chart-tag good" id="rep-tag-ausentismo">↓ 0%</span>
+                </div>
+
+                <div class="rep-insight good" id="rep-insight-ausentismo"></div>
+
+                <div class="rep-chart-svg-wrap" id="grafica-ausentismo"></div>
+
+                <div class="rep-chart-legend">
+                    <span class="rep-legend-item"><span class="rep-legend-dot" style="background:var(--color-texto-suave);"></span>Proyección sin sistema</span>
+                    <span class="rep-legend-item"><span class="rep-legend-dot" style="background:var(--color-primario);"></span>Con Talentsoft</span>
+                </div>
+            </div>
+
+            <div class="rep-chart-card">
+                <div class="rep-chart-head">
+                    <div>
+                        <h3>Productividad vs Horas de Retardo</h3>
+                        <p id="rep-subtitulo-productividad">Por línea de confección · Todos</p>
+                    </div>
+                    <span class="rep-chart-tag risk" id="rep-tag-productividad">Riesgo</span>
+                </div>
+
+                <div class="rep-insight risk" id="rep-insight-productividad"></div>
+
+                <div class="rep-chart-svg-wrap" id="grafica-productividad"></div>
+
+                <div class="rep-chart-legend">
+                    <span class="rep-legend-item"><span class="rep-legend-dot" style="background:var(--color-azul);"></span>Productividad (%)</span>
+                    <span class="rep-legend-item"><span class="rep-legend-dot" style="background:#f87171;"></span>Horas de retardo</span>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             EXPORTACIÓN DE DOCUMENTOS LEGALES
+        ================================================== -->
+
+        <section class="rep-docs-card">
+
+            <div class="rep-docs-head">
+                <div class="rep-docs-head-icon"><i class='bx bx-file'></i></div>
+                <div>
+                    <h3>Exportación de Documentos Legales</h3>
+                    <p>Generación de archivos para cumplimiento normativo y auditoría</p>
+                </div>
+            </div>
+
+            <p class="rep-docs-period">Período: <span id="rep-docs-periodo">Mayo 2026</span> · Todos</p>
+
+            <div class="rep-doc-row">
+                <div class="rep-doc-icon"><i class='bx bxs-file-pdf'></i></div>
+                <div class="rep-doc-info">
+                    <h4>Exportar Reporte de Asistencia (SENA) <span class="rep-doc-format pdf">PDF</span></h4>
+                    <p>Formato oficial — resumen del período seleccionado</p>
+                    <span class="size">Tamaño estimado: 248 KB</span>
+                </div>
+                <div class="rep-doc-actions">
+                    <button type="button" class="rep-btn-descargar pdf" data-doc="reporte_asistencia_sena">
+                        <i class='bx bx-download'></i> Descargar
+                    </button>
+                    <button type="button" class="rep-btn-imprimir" title="Imprimir"><i class='bx bx-printer'></i></button>
+                </div>
+            </div>
+
+            <div class="rep-doc-row">
+                <div class="rep-doc-icon"><i class='bx bxs-file-export'></i></div>
+                <div class="rep-doc-info">
+                    <h4>Exportar Archivo Plano de Nómina <span class="rep-doc-format xls">XLS</span></h4>
+                    <p>PILA · Seguridad Social · Período seleccionado</p>
+                    <span class="size">Tamaño estimado: 186 KB</span>
+                </div>
+                <div class="rep-doc-actions">
+                    <button type="button" class="rep-btn-descargar xls" data-doc="archivo_plano_nomina">
+                        <i class='bx bx-download'></i> Descargar
+                    </button>
+                    <button type="button" class="rep-btn-imprimir" title="Imprimir"><i class='bx bx-printer'></i></button>
+                </div>
+            </div>
+
+            <div class="rep-doc-row">
+                <div class="rep-doc-icon"><i class='bx bx-time-five'></i></div>
+                <div class="rep-doc-info">
+                    <h4>Descargar Balance de Horas Trabajadas <span class="rep-doc-format xls">XLS</span></h4>
+                    <p>Resumen por línea de confección · Exportar a Excel</p>
+                    <span class="size">Tamaño estimado: 132 KB</span>
+                </div>
+                <div class="rep-doc-actions">
+                    <button type="button" class="rep-btn-descargar xls" data-doc="balance_horas_trabajadas">
+                        <i class='bx bx-download'></i> Descargar
+                    </button>
+                    <button type="button" class="rep-btn-imprimir" title="Imprimir"><i class='bx bx-printer'></i></button>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             NOTA LEGAL
+        ================================================== -->
+
+        <div class="rep-legal-note">
+            <i class='bx bx-info-circle'></i>
+            <span>
+                Los documentos exportados siguen los formatos requeridos por el
+                <strong>Ministerio del Trabajo de Colombia</strong> y el <strong>SENA</strong>.
+                Para reportes de seguridad social, use el archivo plano PILA. Conserve los
+                registros por un mínimo de 5 años según la normativa vigente.
+            </span>
+        </div>
+
+    </div>
+
+</main>
+
+<script src="../js/script.js"></script>
+<script src="reportes.js"></script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+    if (localStorage.getItem('ts-auth') !== '1' && sessionStorage.getItem('ts-auth') !== '1') {
+        window.location.href = '../login/login.html';
+    }
+</script>
+<title>Configuración · Talentsoft</title>
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="configuracion.css">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body data-page="configuracion" data-login="../login/login.html">
+
+<nav class="sidebar">
+    <div class="logo-menu">
+        <h2 class="logo">Talentsoft</h2>
+        <i class='bx bx-menu toggle-btn'></i>
+    </div>
+    <ul class="list">
+        <li class="list-item" data-page="dashboard">
+            <a href="../index.html">
+                <i class='bx bx-grid-alt'></i>
+                <span class="link-name" style="--i:1;">Dashboard</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="usuario">
+            <a href="../usuario/usuario.html">
+                <i class='bx bx-user'></i>
+                <span class="link-name" style="--i:2;">Usuario</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="asistencia">
+            <a href="../asistencia/asistencia.html">
+                <i class='bx bx-time'></i>
+                <span class="link-name" style="--i:3;">Asistencia</span>
+            </a>
+        </li>
+        <li class="list-item">
+            <a href="#" title="Próximamente">
+                <i class='bx bx-pie-chart-alt-2'></i>
+                <span class="link-name" style="--i:4;">Reportes</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="vacantes,pipeline,banco,evaluacion,historial">
+            <a href="../Gestion_Vacantes.html">
+                <i class='bx bxs-user-account'></i>
+                <span class="link-name" style="--i:5;">Reclutamiento</span>
+            </a>
+        </li>
+        <li class="list-item">
+            <a href="#" title="Próximamente">
+                <i class='bx bx-timer'></i>
+                <span class="link-name" style="--i:6;">Control asistencia</span>
+            </a>
+        </li>
+        <li class="list-item">
+            <a href="#" title="Próximamente">
+                <i class='bx bx-dollar'></i>
+                <span class="link-name" style="--i:7;">Nomina</span>
+            </a>
+        </li>
+        <li class="list-item">
+            <a href="#" title="Próximamente">
+                <i class='bx bx-hourglass'></i>
+                <span class="link-name" style="--i:7;">Horas trabajadas</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="calendario">
+            <a href="../calendario/calendario.html">
+                <i class='bx bx-calendar-event'></i>
+                <span class="link-name" style="--i:8;">Eventos</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="configuracion">
+            <a href="../configuracion/configuracion.html">
+                <i class='bx bx-cog'></i>
+                <span class="link-name" style="--i:9;">Configuración</span>
+            </a>
+        </li>
+    </ul>
+
+    <li class="mode">
+        <div class="moon-sun">
+            <i class='bx bx-moon'></i>
+            <i class='bx bx-sun'></i>
+        </div>
+        <span class="mode-text">Modo claro</span>
+        <div class="mode-switch">
+            <span class="switch"></span>
+        </div>
+    </li>
+
+    <div class="bottom-content">
+        <li>
+            <a href="#">
+                <i class='bx bx-log-out'></i>
+                <span class="link-name" style="--i:10;">Cerrar sesión</span>
+            </a>
+        </li>
+    </div>
+</nav>
+
+<main class="main-content">
+
+        <div class="cfg-page">
+
+
+            <!-- =================================================
+                 HEADER
+            ================================================== -->
+
+            <div class="section-head">
+
+                <div>
+
+                    <h1>
+                        Configuración
+                    </h1>
+
+                    <p>
+                        Registra empleados y asigna el rol y los
+                        permisos que va a tener cada uno dentro
+                        del sistema.
+                    </p>
+
+                </div>
+
+
+                <button type="button"
+                        class="btn-primary"
+                        id="btnMostrarRegistro">
+
+                    <i class='bx bx-user-plus'></i>
+
+                    Registrar empleado
+
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 FORMULARIO "REGISTRAR EMPLEADO"
+                 (oculto hasta que se le da clic al botón de arriba)
+            ================================================== -->
+
+            <form class="cfg-register-form"
+                  id="formRegistrarEmpleado">
+
+                <div class="cfg-form-grid">
+
+                    <div class="form-field">
+
+                        <label for="regNombre">
+                            Nombre completo
+                        </label>
+
+                        <input type="text"
+                               id="regNombre"
+                               placeholder="Ej: Julián Gómez"
+                               required>
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="regCorreo">
+                            Correo
+                        </label>
+
+                        <input type="email"
+                               id="regCorreo"
+                               placeholder="nombre@talentsoft.com"
+                               required>
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="regContrasena">
+                            Contraseña
+                        </label>
+
+                        <input type="password"
+                               id="regContrasena"
+                               placeholder="Mínimo 6 caracteres"
+                               minlength="6"
+                               required>
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="regTelefono">
+                            Número de teléfono
+                        </label>
+
+                        <input type="tel"
+                               id="regTelefono"
+                               placeholder="+57 300 000 0000"
+                               required>
+
+                    </div>
+
+                </div>
+
+
+                <div class="cfg-form-actions">
+
+                    <button type="button"
+                            class="btn-secondary"
+                            id="btnCancelarRegistro">
+                        Cancelar
+                    </button>
+
+                    <button type="submit"
+                            class="btn-primary">
+                        Guardar empleado
+                    </button>
+
+                </div>
+
+            </form>
+
+
+            <!-- =================================================
+                 LISTA DE EMPLEADOS
+                 Las tarjetas las genera configuracion.js a partir
+                 de EMPLEADOS_DATA (definido en
+                 js/datos-empleados.js). No hay que escribirlas a
+                 mano aquí.
+            ================================================== -->
+
+            <div class="cfg-employees-list"
+                 id="cfg-employees-list">
+            </div>
+
+        </div>
+
+    </main>
+
+<script src="../js/script.js"></script>
+<script src="../js/datos-empleados.js"></script>
+<script src="configuracion.js"></script>
+</body>
+</html>

@@ -1,292 +1,92 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Configuración | Talentsoft</title>
-
-
-    <!-- CSS GENERAL -->
-
-    <link rel="stylesheet"
-          href="../style.css">
-
-
-    <!-- CSS CONFIGURACIÓN -->
-
-    <link rel="stylesheet"
-          href="configuracion.css">
-
-
-    <!-- BOXICONS -->
-
-    <link
-        href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-        rel="stylesheet">
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+    if (localStorage.getItem('ts-auth') !== '1' && sessionStorage.getItem('ts-auth') !== '1') {
+        window.location.href = '../login/login.html';
+    }
+</script>
+<title>Configuración · Talentsoft</title>
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="configuracion.css">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
-
-
-<body>
-
-
-    <!-- =====================================================
-         SIDEBAR
-    ====================================================== -->
-
-    <nav class="sidebar">
-
-        <div class="logo-menu">
-
-            <h2 class="logo">
-                Talentsoft
-            </h2>
-
-            <i class='bx bx-menu toggle-btn'></i>
-
-        </div>
-
-
-        <ul class="list">
-
-
-            <!-- DASHBOARD -->
-
-            <li class="list-item">
-
-                <a href="#"
-                   data-modulo="dashboard">
-
-                    <i class='bx bx-grid-alt'></i>
-
-                    <span class="link-name"
-                          style="--i:1;">
-                        Dashboard
-                    </span>
-
-                </a>
-
-            </li>
-
-
-            <!-- USUARIO -->
-
-            <li class="list-item">
-
-                <a href="#"
-                   data-modulo="usuario">
-
-                    <i class='bx bx-user'></i>
-
-                    <span class="link-name"
-                          style="--i:2;">
-                        Usuario
-                    </span>
-
-                </a>
-
-            </li>
-
-
-            <!-- ASISTENCIA -->
-
-            <li class="list-item">
-
-                <a href="#"
-                   data-modulo="asistencia">
-
-                    <i class='bx bx-time'></i>
-
-                    <span class="link-name"
-                          style="--i:3;">
-                        Asistencia
-                    </span>
-
-                </a>
-
-            </li>
-
-
-            <!-- REPORTES -->
-
-            <li class="list-item">
-
-                <a href="#"
-                   data-modulo="reportes">
-
-                    <i class='bx bx-pie-chart-alt-2'></i>
-
-                    <span class="link-name"
-                          style="--i:4;">
-                        Reportes
-                    </span>
-
-                </a>
-
-            </li>
-
-
-            <!-- RECLUTAMIENTO -->
-
-            <li class="list-item">
-
-                <a href="#"
-                   data-modulo="reclutamiento">
-
-                    <i class='bx bxs-user-account'></i>
-
-                    <span class="link-name"
-                          style="--i:5;">
-                        Reclutamiento
-                    </span>
-
-                </a>
-
-            </li>
-
-
-            <!-- CONTROL ASISTENCIA -->
-
-            <li class="list-item">
-
-                <a href="#"
-                   data-modulo="control">
-
-                    <i class='bx bx-timer'></i>
-
-                    <span class="link-name"
-                          style="--i:6;">
-                        Control asistencia
-                    </span>
-
-                </a>
-
-            </li>
-
-
-            <!-- NOMINA -->
-
-            <li class="list-item">
-
-                <a href="#"
-                   data-modulo="nomina">
-
-                    <i class='bx bx-dollar'></i>
-
-                    <span class="link-name"
-                          style="--i:7;">
-                        Nomina
-                    </span>
-
-                </a>
-
-            </li>
-
-
-            <!-- HORAS TRABAJADAS -->
-
-            <li class="list-item">
-
-                <a href="#"
-                   data-modulo="horas">
-
-                    <i class='bx bx-hourglass'></i>
-
-                    <span class="link-name"
-                          style="--i:8;">
-                        Horas trabajadas
-                    </span>
-
-                </a>
-
-            </li>
-
-
-            <!-- CONFIGURACIÓN -->
-
-            <li class="list-item active">
-
-                <a href="#"
-                   data-modulo="configuracion">
-
-                    <i class='bx bx-cog'></i>
-
-                    <span class="link-name"
-                          style="--i:9;">
-                        Configuración
-                    </span>
-
-                </a>
-
-            </li>
-
-        </ul>
-
-
-        <!-- =================================================
-             MODO
-        ================================================== -->
-
-        <li class="mode">
-
-            <div class="moon-sun">
-
-                <i class='bx bx-moon'></i>
-
-                <i class='bx bx-sun'></i>
-
-            </div>
-
-            <span class="mode-text">
-                Modo oscuro
-            </span>
-
-            <div class="mode-switch">
-
-                <span class="switch"></span>
-
-            </div>
-
+<body data-page="configuracion" data-login="../login/login.html">
+
+<nav class="sidebar">
+    <div class="logo-menu">
+        <h2 class="logo">Talentsoft</h2>
+        <i class='bx bx-menu toggle-btn'></i>
+    </div>
+    <ul class="list">
+        <li class="list-item" data-page="dashboard">
+            <a href="../index.html">
+                <i class='bx bx-grid-alt'></i>
+                <span class="link-name" style="--i:1;">Dashboard</span>
+            </a>
         </li>
+        <li class="list-item" data-page="usuario">
+            <a href="../usuario/usuario.html">
+                <i class='bx bx-user'></i>
+                <span class="link-name" style="--i:2;">Usuario</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="asistencia">
+            <a href="../asistencia/asistencia.html">
+                <i class='bx bx-time'></i>
+                <span class="link-name" style="--i:3;">Asistencia</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="reportes">
+            <a href="../reportes/reportes.html">
+                <i class='bx bx-pie-chart-alt-2'></i>
+                <span class="link-name" style="--i:4;">Reportes</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="vacantes,pipeline,banco,evaluacion,historial">
+            <a href="../Gestion_Vacantes.html">
+                <i class='bx bxs-user-account'></i>
+                <span class="link-name" style="--i:5;">Reclutamiento</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="calendario">
+            <a href="../calendario/calendario.html">
+                <i class='bx bx-calendar-event'></i>
+                <span class="link-name" style="--i:6;">Eventos</span>
+            </a>
+        </li>
+        <li class="list-item" data-page="configuracion">
+            <a href="../configuracion/configuracion.html">
+                <i class='bx bx-cog'></i>
+                <span class="link-name" style="--i:7;">Configuración</span>
+            </a>
+        </li>
+    </ul>
 
-
-        <!-- =================================================
-             CERRAR SESIÓN
-        ================================================== -->
-
-        <div class="bottom-content">
-
-            <li>
-
-                <a href="#">
-
-                    <i class='bx bx-log-out'></i>
-
-                    <span class="link-name"
-                          style="--i:10;">
-                        Cerrar sesión
-                    </span>
-
-                </a>
-
-            </li>
-
+    <li class="mode">
+        <div class="moon-sun">
+            <i class='bx bx-moon'></i>
+            <i class='bx bx-sun'></i>
         </div>
+        <span class="mode-text">Modo claro</span>
+        <div class="mode-switch">
+            <span class="switch"></span>
+        </div>
+    </li>
 
-    </nav>
+    <div class="bottom-content">
+        <li>
+            <a href="#">
+                <i class='bx bx-log-out'></i>
+                <span class="link-name" style="--i:8;">Cerrar sesión</span>
+            </a>
+        </li>
+    </div>
+</nav>
 
-
-
-    <!-- =====================================================
-         MÓDULO CONFIGURACIÓN
-    ====================================================== -->
-
-    <main class="main-content">
+<main class="main-content">
 
         <div class="cfg-page">
 
@@ -415,8 +215,9 @@
             <!-- =================================================
                  LISTA DE EMPLEADOS
                  Las tarjetas las genera configuracion.js a partir
-                 de EMPLEADOS_DATA (definido en datos-empleados.js).
-                 No hay que escribirlas a mano aquí.
+                 de EMPLEADOS_DATA (definido en
+                 js/datos-empleados.js). No hay que escribirlas a
+                 mano aquí.
             ================================================== -->
 
             <div class="cfg-employees-list"
@@ -427,35 +228,8 @@
 
     </main>
 
-
-    <!-- =====================================================
-         JAVASCRIPT GENERAL
-    ====================================================== -->
-
-    <!-- Le dice a script.js que esta página está DENTRO de una
-         carpeta de módulo, así que para volver a la raíz o ir a
-         otra carpeta hay que subir un nivel ("../"). -->
-    <script>
-        window.BASE_PATH = '../';
-    </script>
-
-    <script src="../script.js"></script>
-
-
-    <!-- =====================================================
-         DATOS COMPARTIDOS DE EMPLEADOS
-    ====================================================== -->
-
-    <script src="../datos-empleados.js"></script>
-
-
-    <!-- =====================================================
-         JAVASCRIPT CONFIGURACIÓN
-    ====================================================== -->
-
-    <script src="configuracion.js"></script>
-
-
+<script src="../js/script.js"></script>
+<script src="../js/datos-empleados.js"></script>
+<script src="configuracion.js"></script>
 </body>
-
 </html>
