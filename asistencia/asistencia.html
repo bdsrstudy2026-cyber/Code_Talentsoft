@@ -199,7 +199,7 @@
 
                             <i class='bx bx-trending-up'></i>
 
-                            Horas acumuladas
+                            Horas trabajadas hoy
 
                         </div>
 
@@ -207,10 +207,10 @@
                             class="stat-value"
                             id="horasAcumuladas">
 
-                            38.5h
+                            0.0h
 
                             <small>
-                                / 48h
+                                / 8h
                             </small>
 
                         </div>
@@ -221,16 +221,16 @@
                             <div
                                 class="progress-fill"
                                 id="horasProgress"
-                                style="width:80%;">
+                                style="width:0%;">
 
                             </div>
 
                         </div>
 
 
-                        <div class="stat-caption">
+                        <div class="stat-caption" id="horasCaption">
 
-                            80% de la meta quincenal
+                            Aún no inicias tu turno de hoy
 
                         </div>
 
@@ -250,7 +250,7 @@
 
                         <div class="stat-value">
 
-                            0
+                            <span id="novedadesNum">0</span>
 
                             <small>
                                 registros
@@ -260,7 +260,8 @@
 
 
                         <span
-                            class="status-badge status-accepted">
+                            class="status-badge status-accepted"
+                            id="novedadesBadge">
 
                             <i class='bx bx-check-circle'></i>
 
@@ -283,7 +284,7 @@
                         class="clock-time"
                         id="clockTime">
 
-                        00:00:00
+                        <span id="clockHora">00:00:00</span>
 
                         <span
                             class="clock-ampm"
@@ -305,6 +306,9 @@
                         </span>
 
                     </div>
+
+
+                    <div class="clock-user" id="clockUser"></div>
 
 
                     <div
@@ -351,7 +355,7 @@
 
                             <i class='bx bx-coffee'></i>
 
-                            <span class="punch-title">
+                            <span class="punch-title" id="btnBreakTitulo">
                                 Break / Almuerzo
                             </span>
 
@@ -371,7 +375,7 @@
 
                             <i class='bx bx-group'></i>
 
-                            <span class="punch-title">
+                            <span class="punch-title" id="btnReunionTitulo">
                                 Reunión
                             </span>
 
@@ -402,6 +406,30 @@
                         </button>
 
                     </div>
+
+
+                    <button
+                        class="btn-secondary undo-btn"
+                        id="btnVolverTrabajo"
+                        type="button">
+
+                        <i class='bx bx-play-circle'></i>
+
+                        Volver al trabajo
+
+                    </button>
+
+
+                    <button
+                        class="btn-secondary undo-btn"
+                        id="btnDeshacerSalida"
+                        type="button">
+
+                        <i class='bx bx-undo'></i>
+
+                        Deshacer registro de salida
+
+                    </button>
 
 
 
@@ -516,7 +544,8 @@
 
                             <input
                                 type="date"
-                                id="permisoFecha">
+                                id="permisoFecha"
+                                required>
 
                         </div>
 
@@ -681,6 +710,7 @@
 
                     <button
                         class="btn-primary"
+                        id="btnNuevaVacacion"
                         type="button">
 
                         <i class='bx bx-plus'></i>
@@ -690,6 +720,94 @@
                     </button>
 
                 </div>
+
+
+                <form
+                    class="new-request-form"
+                    id="formVacacion">
+
+                    <div class="form-grid">
+
+                        <div class="form-field">
+
+                            <label>
+                                Fecha inicio
+                            </label>
+
+                            <input
+                                type="date"
+                                id="vacacionInicio"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-field">
+
+                            <label>
+                                Fecha fin
+                            </label>
+
+                            <input
+                                type="date"
+                                id="vacacionFin"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-field">
+
+                            <label>
+                                Días hábiles
+                            </label>
+
+                            <input
+                                type="number"
+                                id="vacacionDias"
+                                min="1"
+                                value="1">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label>
+                            Motivo (opcional)
+                        </label>
+
+                        <textarea
+                            id="vacacionMotivo"
+                            placeholder="Ej: Vacaciones familiares de fin de año...">
+                        </textarea>
+
+                    </div>
+
+
+                    <button
+                        class="btn-primary"
+                        type="submit">
+
+                        <i class='bx bx-send'></i>
+
+                        Enviar solicitud
+
+                    </button>
+
+
+                    <button
+                        class="btn-secondary"
+                        type="button"
+                        id="btnCancelarVacacion">
+
+                        Cancelar
+
+                    </button>
+
+                </form>
 
 
                 <div class="att-stats-grid">
@@ -707,7 +825,7 @@
 
                         <div class="stat-value">
 
-                            9
+                            <span id="vacacionDiasDisponibles">9</span>
 
                             <small>
                                 / 15 días
@@ -776,6 +894,41 @@
 
                 </div>
 
+
+                <div
+                    class="stat-card"
+                    id="vacacionEstadoCard"
+                    style="margin-top:20px;">
+
+                    <div class="stat-card-head">
+
+                        <i class='bx bx-info-circle'></i>
+
+                        Estado de tu última solicitud
+
+                    </div>
+
+
+                    <div
+                        class="stat-value small-date"
+                        id="vacacionEstadoValor">
+
+                        Por aprobar
+
+                    </div>
+
+
+                    <div
+                        class="stat-caption"
+                        id="vacacionEstadoDetalle">
+
+                        Vacaciones de fin de año ·
+                        8 días hábiles · 15 al 22 de diciembre
+
+                    </div>
+
+                </div>
+
             </section>
 
 
@@ -827,7 +980,7 @@
 
                         <div class="stat-value">
 
-                            1
+                            <span id="horasExtraPendientesNum">1</span>
 
                             <small>
                                 registro
@@ -857,6 +1010,7 @@
 
                     <button
                         class="btn-primary"
+                        id="btnNuevaHoraExtra"
                         type="button">
 
                         <i class='bx bx-plus'></i>
@@ -866,6 +1020,82 @@
                     </button>
 
                 </div>
+
+
+                <form
+                    class="new-request-form"
+                    id="formHoraExtra">
+
+                    <div class="form-grid">
+
+                        <div class="form-field">
+
+                            <label>
+                                Fecha
+                            </label>
+
+                            <input
+                                type="date"
+                                id="horaExtraFecha"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-field">
+
+                            <label>
+                                Horas
+                            </label>
+
+                            <input
+                                type="number"
+                                id="horaExtraCantidad"
+                                min="0.5"
+                                step="0.5"
+                                value="1"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-field">
+
+                            <label>
+                                Motivo
+                            </label>
+
+                            <input
+                                type="text"
+                                id="horaExtraMotivo"
+                                placeholder="Ej: Cierre de pedido">
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="btn-primary"
+                        type="submit">
+
+                        <i class='bx bx-send'></i>
+
+                        Registrar
+
+                    </button>
+
+
+                    <button
+                        class="btn-secondary"
+                        type="button"
+                        id="btnCancelarHoraExtra">
+
+                        Cancelar
+
+                    </button>
+
+                </form>
 
 
                 <div class="request-list">
@@ -931,7 +1161,8 @@
 
 
                     <span
-                        class="status-badge status-rejected">
+                        class="status-badge status-rejected"
+                        id="alertasUrgenteBadge">
 
                         <i class='bx bx-error'></i>
 
@@ -942,11 +1173,13 @@
                 </div>
 
 
-                <div class="request-list">
+                <div class="request-list" id="alertasList">
 
 
                     <div
-                        class="alert-card urgency-high">
+                        class="alert-card urgency-high alert-clickable"
+                        data-nombre="Laura Martínez"
+                        data-detalle="Contrato a término fijo. Vence 25 de agosto de 2026. Quedan 6 días.">
 
                         <div class="alert-icon">
 
@@ -981,11 +1214,20 @@
 
                         </div>
 
+
+                        <div class="alert-chevron">
+
+                            <i class='bx bx-chevron-right'></i>
+
+                        </div>
+
                     </div>
 
 
                     <div
-                        class="alert-card urgency-medium">
+                        class="alert-card urgency-medium alert-clickable"
+                        data-nombre="Camila Torres"
+                        data-detalle="Contrato a término fijo. Vence 10 de septiembre de 2026. Quedan 22 días.">
 
                         <div class="alert-icon">
 
@@ -997,7 +1239,7 @@
                         <div class="alert-body">
 
                             <h4>
-                                Juan Ramírez
+                                Camila Torres
                             </h4>
 
                             <p>
@@ -1020,12 +1262,119 @@
 
                         </div>
 
+
+                        <div class="alert-chevron">
+
+                            <i class='bx bx-chevron-right'></i>
+
+                        </div>
+
                     </div>
 
 
                 </div>
 
             </section>
+
+
+            <!-- =================================================
+                 MODAL: MENSAJE AL JEFE (desde Alertas)
+            ================================================== -->
+
+            <div
+                class="att-modal-overlay"
+                id="modalAlerta">
+
+                <div class="att-modal">
+
+                    <h3>
+                        Contrato próximo a vencer
+                    </h3>
+
+                    <p
+                        id="modalAlertaInfo"
+                        style="color:var(--color-texto-suave); margin-bottom:15px;">
+                    </p>
+
+                    <div class="form-field">
+
+                        <label>
+                            Mensaje para tu jefe
+                        </label>
+
+                        <textarea
+                            id="modalAlertaMensaje"
+                            placeholder="Escribe tu mensaje o propuesta para revisar el contrato...">
+                        </textarea>
+
+                    </div>
+
+                    <div class="att-modal-actions">
+
+                        <button
+                            class="btn-secondary"
+                            type="button"
+                            id="btnCancelarAlerta">
+
+                            Cancelar
+
+                        </button>
+
+                        <button
+                            class="btn-primary"
+                            type="button"
+                            id="btnEnviarAlerta">
+
+                            <i class='bx bx-send'></i>
+
+                            Enviar mensaje
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 MODAL: CONFIRMACIÓN GENERAL
+            ================================================== -->
+
+            <div
+                class="att-modal-overlay"
+                id="modalConfirmacion">
+
+                <div class="att-modal" style="text-align:center;">
+
+                    <i
+                        class='bx bx-check-circle'
+                        style="font-size:48px; color:#16a34a;">
+                    </i>
+
+                    <h3 id="modalConfirmacionTitulo">
+                        Listo
+                    </h3>
+
+                    <p
+                        id="modalConfirmacionTexto"
+                        style="color:var(--color-texto-suave); margin:10px 0 20px;">
+                    </p>
+
+                    <button
+                        class="btn-primary"
+                        type="button"
+                        id="btnCerrarConfirmacion"
+                        style="width:100%;">
+
+                        Aceptar
+
+                    </button>
+
+                </div>
+
+            </div>
 
 
         </div>
