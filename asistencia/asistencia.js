@@ -182,13 +182,7 @@ function actualizarReloj() {
 }
 
 
-actualizarReloj();
-
-
-setInterval(
-    actualizarReloj,
-    1000
-);
+/* (el arranque del reloj se movió al final del archivo, ver abajo) */
 
 
 /* =====================================================
@@ -890,6 +884,14 @@ if (btnSalida) {
             cerrarTramoActual();
 
 
+            /* Copia del log ANTES de agregar "Salida": es la que se
+               usa como respaldo, así al "Deshacer salida" el registro
+               de Salida desaparece del historial (antes se quedaba). */
+
+            const logSinSalida =
+                estadoTurno.log.slice();
+
+
             /* Guardamos el registro del turno como
                "Salida", con toda la marcación incluida. */
 
@@ -907,7 +909,7 @@ if (btnSalida) {
                real del día en vez de volver a cero). */
 
             estadoTurno.logRespaldo = {
-                log: estadoTurno.log,
+                log: logSinSalida,
                 actividad: estadoTurno.actividad,
                 segundosTrabajados: estadoTurno.segundosTrabajados
             };
@@ -1866,3 +1868,25 @@ if (btnEnviarAlerta) {
     );
 
 }
+
+
+/* =====================================================
+   ARRANQUE DEL RELOJ
+
+   IMPORTANTE: esto va al FINAL del archivo a propósito.
+
+   actualizarReloj() llama a actualizarHorasTrabajadas(), que usa
+   las variables const/let de la sección MARCACIÓN
+   (horasAcumuladasEl, estadoTurno, etc.). Si se ejecuta ANTES de
+   que esas líneas se hayan leído, JavaScript lanza
+   "Cannot access '...' before initialization" y el archivo
+   completo se detiene ahí, dejando sin funcionar todo lo que
+   sigue (marcación, permisos, vacaciones, horas extra, alertas).
+===================================================== */
+
+actualizarReloj();
+
+setInterval(
+    actualizarReloj,
+    1000
+);
