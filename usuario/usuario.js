@@ -1,5 +1,5 @@
 /* =====================================================
-   MÓDULO USUARIO
+   MÓDULO REGISTRAR PERSONAL
 
    Los accesos a Incentivos, Capacitaciones y Salud
    ocupacional ya son enlaces reales (ver usuario.html).
@@ -8,14 +8,6 @@
    carga la página.
 ===================================================== */
 
-
-/* =====================================================
-   ¿SE ABRIÓ EL PERFIL DE UN EMPLEADO?
-
-   Cuando en Configuración se le da clic a "Ver perfil", el
-   enlace llega como usuario.html?empleado=2. Aquí se lee ese
-   "2" de la URL para saber qué mostrar.
-===================================================== */
 
 const parametros =
     new URLSearchParams(window.location.search);
@@ -36,9 +28,7 @@ if (idEmpleado && typeof EMPLEADOS_DATA !== 'undefined' && EMPLEADOS_DATA[idEmpl
 
 } else {
 
-    /* Sin parámetro (o empleado inválido): se queda en la
-       vista normal del administrador. */
-
+   
     vistaAdmin.style.display = 'block';
     vistaEmpleado.classList.remove('show');
 

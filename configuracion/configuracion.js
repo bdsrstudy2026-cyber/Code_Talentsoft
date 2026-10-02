@@ -1,11 +1,10 @@
 /* =====================================================
-   MÓDULO CONFIGURACIÓN
+   MÓDULO REGISTRAR PERSONAL
 ===================================================== */
 
-/* Permisos por rol del sistema (esto es distinto del "área
-   asignada" del empleado, que es el área de la empresa en la
-   que trabaja). Si tu documento tiene otra redacción, solo
-   cambia los textos aquí. */
+/* Permisos por rol del sistema, aqui se muestra que empleados
+tienen acceso a que funcionalidades ademas de poder cambiar el 
+rol en caso de necesidad */
 
 const PERMISOS_POR_ROL = {
 
@@ -204,9 +203,7 @@ function renderPermisos(id) {
    CAMBIAR ROL CON CONFIRMACIÓN (Aceptar / Rechazar)
 ===================================================== */
 
-/* En vez de aplicar el rol apenas se elige en el <select>,
-   se muestra un mensaje con dos botones. Solo se aplica el
-   cambio de verdad cuando el administrador le da "Aceptar". */
+/* botones de confirmación para guardar el cambio de rol */
 
 listaEmpleados.addEventListener('change', event => {
 
@@ -255,8 +252,7 @@ listaEmpleados.addEventListener('change', event => {
     confirmBox.querySelector('.cfg-btn-rechazar')
         .addEventListener('click', () => {
 
-            /* Se descarta el cambio: el select vuelve al rol
-               que tenía antes de tocarlo. */
+            /* Botón para descartar el cambio */
 
             select.value = rolAnterior;
 
@@ -270,6 +266,11 @@ listaEmpleados.addEventListener('change', event => {
 
 /* =====================================================
    REGISTRAR EMPLEADO
+
+   Aquí se registran los datos básicos de un nuevo empleado
+   (nombre, correo, teléfono y contraseña). El resto de la
+   información se puede registrar después desde el perfil
+   del empleado.
 ===================================================== */
 
 const btnMostrarRegistro =
@@ -319,12 +320,6 @@ if (formRegistrar) {
 
         const telefono =
             document.getElementById('regTelefono').value.trim();
-
-        /* La contraseña solo se usa aquí para crear la cuenta;
-           no se guarda en EMPLEADOS_DATA ni se muestra en
-           ningún perfil. Cuando se conecte un backend real,
-           este es el valor que se enviaría (ya encriptado) al
-           servidor. */
 
         const contrasena =
             document.getElementById('regContrasena').value;
