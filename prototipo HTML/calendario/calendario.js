@@ -177,3 +177,6 @@ eventModal.addEventListener("click",e=>{if(e.target===eventModal)closeEventModal
 document.addEventListener("keydown",e=>{if(e.key!=="Escape")return;if(eventModal.classList.contains("active"))closeEventModal();if(dayDetailsModal.classList.contains("active"))closeDayModal();});
 eventForm.addEventListener("submit",e=>{e.preventDefault();const selectedTime=getCalendarTime();const newEvent={id:Date.now().toString(),title:eventTitleInput.value.trim(),date:eventDateInput.value,time:selectedTime,description:eventDescriptionInput.value.trim(),role:eventRoleSelect.value||"todos"};if(!newEvent.title||!newEvent.date||!selectedTime)return;events.push(newEvent);saveEvents(events);currentMonth=new Date(`${newEvent.date}T00:00:00`);currentMonth.setDate(1);renderAllEvents();closeEventModal();});
 renderAllEvents();
+
+//En esta parte del codigo se encuentran las funciones y acciones que se pueden realiar dentro del calendario de la pagina web con inspiracion
+//del calendario de google, teniendo en ella ajustes unicos para quienes va dirigida la web.
