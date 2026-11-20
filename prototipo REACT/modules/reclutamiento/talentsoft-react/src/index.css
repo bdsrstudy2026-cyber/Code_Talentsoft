@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================================
+   TOKENS DE TEMA
+   Valores en formato "R G B" (sin comas) para que Tailwind pueda
+   aplicar opacidad: bg-panel/60, border-line/50, etc.
+   ========================================================= */
+@layer base {
+  /* ---- Tema claro ---- */
+  :root {
+    --ts-ink: 28 28 30;
+    --ts-muted: 100 116 139;
+    --ts-panel: 255 255 255;
+    --ts-panel-alt: 248 250 252;
+    --ts-line: 226 232 240;
+    --ts-bg: 241 245 249;
+    --ts-bg-image: url('/img/wall-light.jpg');
+    color-scheme: light;
+  }
+
+  /* ---- Tema oscuro (deep dark) ---- */
+  :root.dark {
+    --ts-ink: 255 255 255;
+    --ts-muted: 148 163 184;
+    --ts-panel: 30 41 59;
+    --ts-panel-alt: 15 18 26;
+    --ts-line: 51 65 85;
+    --ts-bg: 10 12 16;
+    --ts-bg-image: url('/img/wall.jpg');
+    color-scheme: dark;
+  }
+
+  body {
+    @apply font-sans text-ink antialiased;
+    background-color: rgb(var(--ts-bg));
+    background-image: var(--ts-bg-image);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  /* Transición suave al cambiar de tema */
+  body,
+  .theme-transition {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+/* =========================================================
+   COMPONENTES REUTILIZABLES
+   ========================================================= */
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium
+      transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
+      focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-brand text-white hover:bg-brand-hover;
+  }
+  .btn-secondary {
+    @apply btn border border-line bg-panel text-ink hover:border-brand hover:text-brand;
+  }
+
+  .card {
+    @apply rounded-xl border border-line bg-panel;
+  }
+
+  .field {
+    @apply w-full rounded-lg border border-line bg-panel-alt px-3.5 py-2.5 text-sm text-ink
+      placeholder:text-muted focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30;
+  }
+
+  .skill-tag {
+    @apply rounded-full border border-line bg-panel-alt px-3 py-1 text-xs text-ink/90;
+  }
+}
